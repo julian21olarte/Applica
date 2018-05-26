@@ -28,30 +28,23 @@ export class LoginPage {
   }
 
   public loginFacebook() {
-    console.log('entra');
-    this.authProvider.loginFacebook()
-    .then(user => {
-      console.log('entra 2');
-      this.loginHandler(user);
-    });
+    const user = this.authProvider.loginFacebook();
+    this.loginHandler(user);
   }
+
   public loginTwitter() {
-    this.authProvider.loginTwitter()
-    .then(user => {
-      this.loginHandler(user);
-    });
+    const user = this.authProvider.loginTwitter();
+    this.loginHandler(user);
   }
+
   public loginGoogle() {
-    this.authProvider.loginGoogle()
-    .then(user => {
-      this.loginHandler(user);
-    });
+    const user = this.authProvider.loginGoogle();
+    this.loginHandler(user);
   }
 
   private loginHandler(user) {
-    if (user) {
+    if(user) {
       this.navCtrl.push('HomePage');
-      alert('funciono!');
     } else {
       alert('error en la autenticacion');
     }

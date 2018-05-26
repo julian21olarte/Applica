@@ -19,8 +19,8 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference  name = "TwitterConsumerKey"  value = "GM1SOoi6Q4wCw8nPhTHklKiCE" />
-    <preference  name = "TwitterConsumerSecret"  value = "KkMYZ2ZTv6KqmWXKZZd9C6Y3cVpxNKg3UoEkPQIYAJljHXE8LS" />
+    <preference name="TwitterConsumerKey" value="GM1SOoi6Q4wCw8nPhTHklKiCE" />
+    <preference name="TwitterConsumerSecret" value="KkMYZ2ZTv6KqmWXKZZd9C6Y3cVpxNKg3UoEkPQIYAJljHXE8LS" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -87,7 +87,6 @@
         <variable name="APP_ID" value="1715901868491385" />
         <variable name="APP_NAME" value="Applica" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="myreversedclientid" />
     </plugin>
@@ -96,4 +95,5 @@
         <variable name="TWITTER_KEY" value="GM1SOoi6Q4wCw8nPhTHklKiCE" />
         <variable name="TWITTER_SECRET" value="KkMYZ2ZTv6KqmWXKZZd9C6Y3cVpxNKg3UoEkPQIYAJljHXE8LS" />
     </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>

@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
 import { AuthCredential } from '@firebase/auth-types';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
@@ -37,29 +36,94 @@ export class AuthProvider {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
     this.currentUserObservable = new BehaviorSubject(this.currentUser);
-    console.log(this.fireAuth.auth.currentUser);
   }
 
+
+  /**PUBLIC LOGIN FUNCTIONS */
+
+  /**
+   * Login Facebook
+   */
   public loginFacebook() {
-    if (this.platform.is('corova')) {
+    if (this.platform.is('cordova')) {
       return this.nativeFacebookLogin();
     } else {
       return this.webFacebookLogin();
     }
   }
 
+  /**
+   * Login Twitter
+   */
+  public loginTwitter() {
+    if (this.platform.is('cordova')) {
+      return this.nativeTwitterLogin();
+    } else {
+      return this.webTwitterLogin();
+    }
+  }
+
+  /**
+   * Login Google
+   */
+  public loginGoogle() {
+    if (this.platform.is('cordova')) {
+      return this.nativeGoogleLogin();
+    } else {
+      return this.webGoogleLogin();
+    }
+  }
+
+  /**
+   * Native Facebook Login (in cordova platform, native devices)
+   */
   private async nativeFacebookLogin() {
     try {
-      const response = await this.facebook.login(['email', 'public_profile']);
-      const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
-      const signIn = await this.fireAuth.auth.signInWithCredential(facebookCredential);
+      await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getFacebookCredential());
+      const user = this.loginUser();
+      this.setCurrentUser(user);
+      return user;
+    } catch(error) {
+      return this.loginErrorHandler(error)
+    }
+  }
+
+  /**
+   * Native Twitter login
+   */
+  private async nativeTwitterLogin() {
+    try {
+      await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getTwitterCredential());
       const user = this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
-      return this.loginErrorHandler(error)
+      return this.loginErrorHandler(error);
     }
   }
+
+  /**
+   * Native Google login
+   */
+  private async nativeGoogleLogin() {
+    try {
+      await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getGoogleCredential());
+      const user = this.loginUser();
+      this.setCurrentUser(user);
+      return user;
+    } catch (error) {
+      return this.loginErrorHandler(error);
+    }
+  }
+
+
+
+  /**WEB LOGIN FUNCTIONS */
+  /**Use in Browsers */
+
+  /**
+   * Web Facebook login (run in web browser)
+   */
   private async webFacebookLogin() {
     try {
       const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
@@ -70,48 +134,10 @@ export class AuthProvider {
       return this.loginErrorHandler(error)
     }
   }
-  // private webFacebookLogin() {
-  //   return this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-  //     .then(response => this.loginUser())
-  //     .then(user => {
-  //       this.setCurrentUser(user);
-  //       return user;
-  //     })
-  //     .catch(error => this.loginErrorHandler(error));
-  // }
-  // private async nativeFacebookLogin() {
-  //   return this.facebook.login(['email', 'public_profile'])
-  //       .then(response => {
-  //         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
-  //         return this.fireAuth.auth.signInWithCredential(facebookCredential)
-  //           .then(response => this.loginUser())
-  //           .then(user => {
-  //             this.setCurrentUser(user);
-  //             return user;
-  //           }).catch(error => this.loginErrorHandler(error));
-  //       });
-  // }
 
-  public loginTwitter() {
-    if (this.platform.is('cordova')) {
-      return this.nativeTwitterLogin();
-    } else {
-      return this.webTwitterLogin();
-    }
-  }
-
-  private async nativeTwitterLogin() {
-    try {
-      const response = await this.Twitter.login();
-      const twitterCredential = firebase.auth.TwitterAuthProvider.credential(response.token, response.secret);
-      const signin = await this.fireAuth.auth.signInWithCredential(twitterCredential);
-      const user = this.loginUser();
-      this.setCurrentUser(user);
-      return user;
-    } catch (error) {
-      return this.loginErrorHandler(error);
-    }
-  }
+  /**
+   * Web Twitter login
+   */
   private async webTwitterLogin() {
     try {
       const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
@@ -123,43 +149,9 @@ export class AuthProvider {
     }
   }
 
-  public loginGoogle() {
-    if (this.platform.is('cordova')) {
-      return this.nativeGoogleLogin();
-    } else {
-      return this.webGoogleLogin();
-    }
-  }
-  // public loginGoogle() {
-  //   return this.fireAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-  //     .then(response => this.loginUser())
-  //     .then(user => {
-  //       console.log(user);
-  //       this.setCurrentUser(user);
-  //       return user;
-  //     })
-  //     .catch(error => {
-  //       return this.loginErrorHandler(error);
-  //     });
-  // }
-
-  private async nativeGoogleLogin() {
-    try {
-      const gplusUser = await this.googlePlus.login({
-        'webClientId': '194788830493-3a0sg2db3ug9ouhs2mjg5jag9taunl94.apps.googleusercontent.com',
-        'offline': true,
-        'scopes': 'profile email'
-      })
-      const response = await this.fireAuth.auth
-        .signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
-      const user = this.loginUser();
-      this.setCurrentUser(user);
-      return user;
-    } catch (error) {
-      return this.loginErrorHandler(error);
-    }
-
-  }
+  /**
+   * Web Google login
+   */
   private async webGoogleLogin() {
     try {
       const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
@@ -171,10 +163,45 @@ export class AuthProvider {
     }
   }
 
+
+
+  /*GET CREDENTIALS FUNCTIONS*/
+  /* Use in native platoforms (cordova)*/
+
+  /**
+   * get Facebook credentials
+   */
+  private async getFacebookCredential() {
+      const response = await this.facebook.login(['email', 'public_profile']);
+      return firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+  }
+
+  /**
+   * Get Twitter Credentials
+   */
+  private async getTwitterCredential() {
+    const response = await this.Twitter.login();
+    return firebase.auth.TwitterAuthProvider.credential(response.token, response.secret);
+  }
+
+  /**
+   * Get Google Credentials
+   */
+  private async getGoogleCredential() {
+    const gplusUser = await this.googlePlus.login({
+      'webClientId': '194788830493-3a0sg2db3ug9ouhs2mjg5jag9taunl94.apps.googleusercontent.com',
+      'offline': true,
+      'scopes': 'profile email'
+    });
+    return firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken);
+  }
+
+  /**
+   * Login User
+   */
   private loginUser() {
     const fireUser = this.fireAuth.auth.currentUser;
     this.currentUser = {};
-    console.log(fireUser);
     this.currentUser.name = fireUser.displayName;
     this.currentUser.email = fireUser.email;
     this.currentUser.image = fireUser.photoURL;
@@ -182,10 +209,12 @@ export class AuthProvider {
     return this.currentUser;
   }
 
-
+  /**
+   * Error Handler (verify if exist other account with the same email.)
+   * @param errorResponse 
+   */
   private loginErrorHandler(errorResponse: any) {
     const email = errorResponse.email;
-    console.log(email);
     const credential = errorResponse.credential;
     if (errorResponse.code !== 'auth/account-exists-with-different-credential') {
       return null;
@@ -193,66 +222,53 @@ export class AuthProvider {
     return this.loginIfExistProvider(email, credential);
   }
 
-  // private async loginIfExistProvider(email: string, credential: AuthCredential) {
-  //   const providers = await this.fireAuth.auth.fetchProvidersForEmail(email);
-  //   if (providers.length) {
-  //     let provider = null;
-  //     console.log(providers);
-  //     switch (providers[0]) {
-  //       case 'twitter.com': provider = new firebase.auth.TwitterAuthProvider(); break;
-  //       case 'facebook.com': provider = new firebase.auth.FacebookAuthProvider(); break;
-  //       case 'github.com': provider = new firebase.auth.GithubAuthProvider(); break;
-  //       case 'google.com': provider = new firebase.auth.GoogleAuthProvider(); break;
-  //     }
-  //     if(provider) {
-  //       try {
-  //         console.log(providers[0]);
-  //         provider.setCustomParameters({ login_hint: email });
-  //         const responseRedirect = await this.fireAuth.auth.signInWithRedirect(provider);
-  //         const response = await this.fireAuth.auth.currentUser.linkWithCredential(credential);
-  //         const user = this.loginUser();
-  //         this.setCurrentUser(user);
-  //         return user;
-  //       } catch(error) {
-  //         alert('Error obteniendo los proveedores de autenticacion.');
-  //       }
-  //     }
-  //   } else {
-  //     alert('Error obteniendo los proveedores de autenticacion.');
-  //   }
-  // }
-  private loginIfExistProvider(email: string, credential: AuthCredential) {
-    return this.fireAuth.auth.fetchProvidersForEmail(email)
-      .then(providers => {
-        if (providers.length) {
-          let provider = null;
-          switch (providers[0]) {
-            case 'twitter.com': provider = new firebase.auth.TwitterAuthProvider(); break;
-            case 'facebook.com': provider = new firebase.auth.FacebookAuthProvider(); break;
-            case 'github.com': provider = new firebase.auth.GithubAuthProvider(); break;
-            case 'google.com': provider = new firebase.auth.GoogleAuthProvider(); break;
-          }
-          if (provider) {
+  /**
+   * Login if exist other provider (other account with the same email)
+   * @param email 
+   * @param credential 
+   */
+  private async loginIfExistProvider(email: string, credential: AuthCredential) {
+    const providers = await this.fireAuth.auth.fetchSignInMethodsForEmail(email);
+    if (providers.length) {
+      let provider = null;
+      if(this.platform.is('cordova')) {
+        switch (providers[0]) {
+          case 'twitter.com': provider = await this.getTwitterCredential(); break;
+          case 'facebook.com': provider = await this.getFacebookCredential(); break;
+          case 'google.com': provider = await this.getGoogleCredential(); break;
+        }
+      } else {
+        switch (providers[0]) {
+          case 'twitter.com': provider = new firebase.auth.TwitterAuthProvider(); break;
+          case 'facebook.com': provider = new firebase.auth.FacebookAuthProvider(); break;
+          case 'google.com': provider = new firebase.auth.GoogleAuthProvider(); break;
+        }
+      }
+      if(provider) {
+        try {
+          if(this.platform.is('cordova')) {
+            await this.fireAuth.auth.signInAndRetrieveDataWithCredential(provider)
+          } else {
             provider.setCustomParameters({ login_hint: email });
-            return this.fireAuth.auth.signInWithPopup(provider)
-              .then(resp =>
-                this.fireAuth.auth.currentUser.linkWithCredential(credential)
-                  .then(response => this.loginUser())
-                  .then(user => {
-                    this.setCurrentUser(user);
-                    return user;
-                  }));
+            await this.fireAuth.auth.signInWithPopup(provider);
           }
-        } else {
+          const response = await this.fireAuth.auth.currentUser.linkAndRetrieveDataWithCredential(credential);
+          const user = this.loginUser();
+          this.setCurrentUser(user);
+          return user;
+        } catch(error) {
           alert('Error obteniendo los proveedores de autenticacion.');
         }
-      })
-      .catch(error => {
-        console.log(error);
-        alert('Error obteniendo los proveedores de autenticacion.');
-      });
+      }
+    } else {
+      alert('No existen mas proveedores de autenticacion.');
+    }
   }
-
+  
+  /**
+   * setCurrentUser
+   * @param user new User
+   */
   private setCurrentUser(user: any = null) {
     this.currentUserObservable.next(user);
   }
