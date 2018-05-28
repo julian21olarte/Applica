@@ -215,19 +215,21 @@ export class AuthProvider {
       email: fireUser.email,
       image: fireUser.photoURL
     };
-    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    const firestoreUserRef = this.database.doc('users/'+fireUser.uid)
+    firestoreUserRef
+    .valueChanges()
+    .subscribe(firestoreUser => {
+      firestoreUser
+      ? firestoreUserRef.update(this.currentUser)
+      : this.currentUser = firestoreUser as User;
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    });
     this.setCurrentUser(this.currentUser);
-
-    // Save user in Firebase cloud database
-    this.database.collection('users')
-      .doc(fireUser.uid)
-      .set(this.currentUser);
-
     return this.currentUser;
   }
 
   /**
-   * Error Handler (verify if exist other account with the same email.)
+   * Error Handler (and verify if exist other account with the same email.)
    * @param errorResponse 
    */
   private loginErrorHandler(errorResponse: any) {
@@ -264,7 +266,7 @@ export class AuthProvider {
       if(provider) {
         try {
           if(this.platform.is('cordova')) {
-            await this.fireAuth.auth.signInAndRetrieveDataWithCredential(provider)
+            await this.fireAuth.auth.signInAndRetrieveDataWithCredential(provider);
           } else {
             provider.setCustomParameters({ login_hint: email });
             await this.fireAuth.auth.signInWithPopup(provider);
