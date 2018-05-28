@@ -1,12 +1,16 @@
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Facebook } from '@ionic-native/facebook';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from './providers/auth/auth';
 import { NgModule } from '@angular/core';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
-  imports: [AngularFireAuthModule],
+  imports: [
+    AngularFireAuthModule,
+    AngularFirestoreModule
+  ],
   exports: [],
   declarations: [],
   providers: [

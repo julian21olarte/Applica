@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthProvider } from '../shared/providers/auth/auth';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,17 +12,16 @@ export class MyApp {
 
   rootPage: any = 'HomePage';
 
-  pages: Array<{title: string, component: any}>;
+  private currentUser: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public authProvider: AuthProvider) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Perfil', component: 'ProfilePage' },
-      { title: 'Login', component: 'LoginPage' }
-    ];
-
+    // subscribe to current user
+    this.authProvider.getCurrentUser()
+      .subscribe(user => {
+        this.currentUser = user;
+      });
   }
 
   initializeApp() {
@@ -33,9 +33,12 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  public openPage(page) {
+    this.nav.setRoot(page);
+  }
+
+  public async logout() {
+    const response = await this.authProvider.logout();
+    console.log(response);
   }
 }

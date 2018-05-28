@@ -1,3 +1,4 @@
+import { User } from './../../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -12,6 +13,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { Platform } from 'ionic-angular';
 
+import { AngularFirestore } from 'angularfire2/firestore';
+
 /*
   Generated class for the AuthProvider provider.
 
@@ -21,13 +24,14 @@ import { Platform } from 'ionic-angular';
 @Injectable()
 export class AuthProvider {
 
-  private currentUser: any;
+  private currentUser: User;
   private currentUserObservable: BehaviorSubject<any>;
   private api: string;
   private apiUser: string;
   constructor(
     public http: HttpClient,
     private fireAuth: AngularFireAuth,
+    private database: AngularFirestore,
     private platform: Platform,
     private googlePlus: GooglePlus,
     public facebook: Facebook,
@@ -201,11 +205,24 @@ export class AuthProvider {
    */
   private loginUser() {
     const fireUser = this.fireAuth.auth.currentUser;
-    this.currentUser = {};
-    this.currentUser.name = fireUser.displayName;
-    this.currentUser.email = fireUser.email;
-    this.currentUser.image = fireUser.photoURL;
+
+    // fill User
+    this.currentUser = {
+      uid: fireUser.uid,
+      status: 1,
+      name: fireUser.displayName,
+      fullname: fireUser.displayName,
+      email: fireUser.email,
+      image: fireUser.photoURL
+    };
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    this.setCurrentUser(this.currentUser);
+
+    // Save user in Firebase cloud database
+    this.database.collection('users')
+      .doc(fireUser.uid)
+      .set(this.currentUser);
+
     return this.currentUser;
   }
 
@@ -271,6 +288,45 @@ export class AuthProvider {
    */
   private setCurrentUser(user: any = null) {
     this.currentUserObservable.next(user);
+  }
+
+  public getCurrentUser(): Observable<any> {
+    if(this.currentUser && localStorage.getItem('currentUser') !== null && this.fireAuth.auth.currentUser) {
+      this.setCurrentUser(this.currentUser);
+    }
+    return this.currentUserObservable;
+  }
+
+
+  /**
+   * Logout
+   */
+  public async logout() {
+    try {
+      localStorage.removeItem('currentUser');
+      this.setCurrentUser();
+      return await this.fireAuth.auth.signOut();
+    } catch(error) {
+      alert('Error al salir de la aplicacion');
+    }
+  }
+
+
+  /**
+   * Update User Data from Personal Data Page
+   * @param user New Data
+   */
+  public async updateUserData(user?: User) {
+    if(user && this.currentUser) {
+      try {
+        user.status = user.status >= 2 ? user.status : 2;
+        return await this.database.collection('users').doc(this.currentUser.uid).set(user);
+      } catch(error) {
+        alert(error);
+        alert('Error actualizando los datos del usuario.');
+      }
+    }
+    return false;
   }
 
 }
