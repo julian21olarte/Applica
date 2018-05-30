@@ -14,7 +14,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
-
 @NgModule({
   declarations: [
     MyApp
@@ -34,7 +33,7 @@ import { SharedModule } from '../shared/shared.module';
     StatusBar,
     SplashScreen,
     AuthProvider,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

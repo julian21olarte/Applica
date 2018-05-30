@@ -26,9 +26,9 @@ export class PersonalDataPage {
   ionViewDidLoad() {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
-      console.log('user');
       this.currentUser = user;
     });
+    alert('Por favor completa tus datos personales');
   }
 
   public saveData() {

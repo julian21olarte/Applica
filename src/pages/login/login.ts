@@ -27,24 +27,30 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  public loginFacebook() {
-    const user = this.authProvider.loginFacebook();
+  public async loginFacebook() {
+    const user = await this.authProvider.loginFacebook();
     this.loginHandler(user);
   }
 
-  public loginTwitter() {
-    const user = this.authProvider.loginTwitter();
+  public async loginTwitter() {
+    const user = await this.authProvider.loginTwitter();
     this.loginHandler(user);
   }
 
-  public loginGoogle() {
-    const user = this.authProvider.loginGoogle();
+  public async loginGoogle() {
+    const user = await this.authProvider.loginGoogle();
     this.loginHandler(user);
   }
 
   private loginHandler(user) {
     if(user) {
-      this.navCtrl.push('HomePage');
+      console.log(user);
+      let page = 'HomePage';
+      if(user.status <= 1) {
+        alert('Por favor completa tus datos personales...');
+        page = 'PersonalDataPage';
+      }
+      this.navCtrl.push(page);
     } else {
       alert('error en la autenticacion');
     }
