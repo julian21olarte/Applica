@@ -27,8 +27,10 @@ export class PersonalDataPage {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
       this.currentUser = user;
-    });
-    alert('Por favor completa tus datos personales');
+      if(this.currentUser.status < 2) {
+        alert('Por favor completa tus datos personales');
+      }
+    });    
   }
 
   public saveData() {

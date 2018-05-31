@@ -14,29 +14,29 @@
 
 
 <ion-content padding>
-  <ion-slides *ngIf="questions">
-    <ion-slide *ngFor="let question of questions; let i = index">
-      <h5>{{(i+1)}}. {{question.question}}</h5>
-      <br>
-      <ion-list radio-group [(ngModel)]="question.answer">
-        <!-- <ion-list-header>
-            {{(i+1)}}. {{question.question}}
-        </ion-list-header> -->
-        <ion-item *ngFor="let answer of question.answers" text-wrap>
-          <ion-label>{{answer.description}}</ion-label>
-          <ion-radio [value]=answer.code></ion-radio>
-        </ion-item>
-      </ion-list>
-
-      <ion-grid>
-          <ion-row>
-            <ion-col>
-              <button *ngIf="(i + 1) != questions.length" ion-button color="primary" (click)="next(i)">Siguiente</button>
-              <button *ngIf="(i + 1) == questions.length" ion-button color="success" (click)="finishTest()">Finalizar</button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-    </ion-slide>
-  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-slides *ngIf="questions">
+          <ion-slide *ngFor="let question of questions; let i = index">
+            <h5>{{(i+1)}}. {{question.question}}</h5>
+            <br>
+            <ion-list radio-group [(ngModel)]="question.answer">
+              <!-- <ion-list-header>
+                      {{(i+1)}}. {{question.question}}
+                  </ion-list-header> -->
+              <ion-item *ngFor="let answer of question.answers" text-wrap>
+                <ion-label>{{answer.description}}</ion-label>
+                <ion-radio [value]=answer.code></ion-radio>
+              </ion-item>
+            </ion-list>
+            <br>
+            <button *ngIf="(i + 1) != questions.length" ion-button float-center color="primary" (click)="next(i)">Siguiente</button>
+            <button *ngIf="(i + 1) == questions.length" ion-button float-center color="success" (click)="finishTest()">Finalizar</button>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

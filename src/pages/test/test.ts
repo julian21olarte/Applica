@@ -36,6 +36,15 @@ export class TestPage {
 
   public finishTest() {
     console.log(this.questions);
+    if(this.validateTest()) {
+      this.testProvider.evaluateTest(this.questions);
+    } else {
+      alert('Por favor contesta todas las preguntas!');
+    }
+  }
+
+  private validateTest() {
+    return this.questions.every(question => question.answer ? true : false);
   }
 
 }

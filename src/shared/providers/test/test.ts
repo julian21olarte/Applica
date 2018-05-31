@@ -293,4 +293,17 @@ export class TestProvider {
     return this.test;
   }
 
+  public evaluateTest(test: Array<Question>) {
+    let values = [];
+    test.forEach(question => {
+      const currentCategory = values.find(value => value.category === question.category);
+      if(currentCategory) {
+        currentCategory.value += question.answer;
+      } else {
+        values.push({category: question.category, value: question.answer});
+      }
+    });
+    console.log(values.sort((a, b) => b.value - a.value));
+  }
+
 }
