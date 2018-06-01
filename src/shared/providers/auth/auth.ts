@@ -303,6 +303,9 @@ export class AuthProvider {
     this.currentUserObservable.next(user);
   }
 
+  /**
+   * get The current User in System
+   */
   public getCurrentUser(): Observable<any> {
     if(this.currentUser && localStorage.getItem('currentUser') !== null && this.fireAuth.auth.currentUser) {
       this.setCurrentUser(this.currentUser);
