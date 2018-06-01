@@ -338,6 +338,8 @@ export class AuthProvider {
         console.log('status: ', user.status);
         user.status = user.status >= 2 ? user.status : 2;
         console.log('status: ', user.status);
+        this.currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
         return await this.database.collection('users').doc(this.currentUser.uid).set(user);
       } catch(error) {
         alert(error);
