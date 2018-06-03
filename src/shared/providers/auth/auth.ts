@@ -13,7 +13,7 @@ import { AuthCredential } from '@firebase/auth-types';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
-import { Platform } from 'ionic-angular';
+import { Platform, Events } from 'ionic-angular';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -32,6 +32,7 @@ export class AuthProvider {
   private apiUser: string;
   constructor(
     public http: HttpClient,
+    public events: Events,
     private fireAuth: AngularFireAuth,
     private database: AngularFirestore,
     private platform: Platform,
@@ -235,7 +236,7 @@ export class AuthProvider {
       ? this.currentUser = firestoreUser as User
       : firestoreUserRef.update(this.currentUser);
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    this.setCurrentUser(this.currentUser);
+    this.events.publish('user:login', this.currentUser);
     return this.currentUser;
   }
 
@@ -307,7 +308,7 @@ export class AuthProvider {
    * get The current User in System
    */
   public getCurrentUser(): Observable<any> {
-    if(this.currentUser && localStorage.getItem('currentUser') !== null && this.fireAuth.auth.currentUser) {
+    if(this.currentUser && localStorage.getItem('currentUser') !== null) {
       this.setCurrentUser(this.currentUser);
     }
     return this.currentUserObservable;

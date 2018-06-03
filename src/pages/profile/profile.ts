@@ -1,4 +1,3 @@
-import { PersonalDataPage } from './../personal-data/personal-data';
 import { AuthProvider } from './../../shared/providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -19,9 +18,14 @@ import { User } from '../../shared/interfaces/user.interface';
 export class ProfilePage {
 
   private currentUser: User;
-  private state: any;
+  private phases: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
-    
+    this.phases = [
+      {description: "Registrate con tu red social favorita"},
+      {description: "Completa tus datos personales"},
+      {description: "Presenta nuestro test aptitudinal"},
+      {description: "Descubre tu carrera profesional"}
+    ]
   }
 
   ionViewDidLoad() {

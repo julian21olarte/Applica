@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Profile</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,44 +18,37 @@
 
 <ion-content>
   <ion-card *ngIf="currentUser">
-
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="{{currentUser.image}}">
-      </ion-avatar>
-      <h2>{{currentUser.name}}</h2>
-      <p>{{currentUser.email}}</p>
-    </ion-item>
     <ion-card-content>
-      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?!
-        Whoa. This is heavy.</p>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{currentUser.image}}">
+        </ion-avatar>
+        <h2>{{currentUser.name}}</h2>
+        <p>{{currentUser.email}}</p>
+      </ion-item>
     </ion-card-content>
+  </ion-card>
 
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Likes</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
-      </ion-col>
-    </ion-row>
+  <ion-card *ngIf="currentUser">
+    <ion-card-header>
+      <h3 color="primary">Avance</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let phase of phases; let i = index" text-wrap>
+            <ion-icon 
+              name="{{(i + 1) <= currentUser.status ? 'checkmark-circle' : 'close-circle'}}"
+              color="{{(i + 1) <= currentUser.status ? 'success' : 'danger'}}"> </ion-icon>
+            {{phase.description}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
 
   <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button color="registry" full (click)="goPersonalData()">Datos Personales</button>
+        <button ion-button color="registry" full (click)="goPersonalData()">Editar Información</button>
       </ion-col>
     </ion-row>
   </ion-grid>

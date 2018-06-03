@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../shared/providers/auth/auth';
@@ -14,14 +14,22 @@ export class MyApp {
 
   private currentUser: any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public authProvider: AuthProvider) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public authProvider: AuthProvider,
+    public events: Events) {
     this.initializeApp();
 
-    // subscribe to current user
+    this.events.subscribe('user:login', user => {
+      this.currentUser = user;
+    });
+
     this.authProvider.getCurrentUser()
-      .subscribe(user => {
-        this.currentUser = user;
-      });
+    .subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   initializeApp() {
@@ -39,6 +47,6 @@ export class MyApp {
 
   public async logout() {
     const response = await this.authProvider.logout();
-    console.log(response);
+    this.nav.push('HomePage');
   }
 }

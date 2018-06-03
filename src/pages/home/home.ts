@@ -12,4 +12,7 @@ export class HomePage {
 
   }
 
+  public goToLogin() {
+    this.navCtrl.push('LoginPage');
+  }
 }

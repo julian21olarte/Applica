@@ -1,13 +1,20 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar color="primary">
+<ion-menu [content]="content" [swipeEnabled]="currentUser">
+  <ion-header class="card-background-page">
+    <ion-toolbar color="primary" *ngIf="!currentUser">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
+    <ion-item color="primary" *ngIf="currentUser">
+      <ion-avatar item-center class="avatars">
+        <img src="{{currentUser.image}}">
+      </ion-avatar>
+      <h4>{{currentUser.name | titlecase}}</h4>
+      <p>{{currentUser.email}}</p>
+    </ion-item>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item (click)="openPage('ProfilePage')">Perfil</button>
+      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('ProfilePage')">Perfil</button>
       <button menuClose ion-item (click)="openPage('TestPage')">Test</button>
       <button menuClose *ngIf="!currentUser" ion-item (click)="openPage('LoginPage')">Login</button>
       <button menuClose *ngIf="currentUser" ion-item (click)="logout()">Salir</button>
