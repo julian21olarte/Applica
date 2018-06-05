@@ -57,8 +57,8 @@ export class TestPage {
         if(data && this.currentUser) {
           this.loading.dismiss();
           console.log(data);
-          this.currentUser.careers = data;
           this.currentUser.status = this.currentUser.status >= 3 ? this.currentUser.status : 3;
+          this.currentUser.careers = data;
           this.authProvider.updateUserData(this.currentUser);
           this.navCtrl.push('TestResultPage');
         } else {
