@@ -1,7 +1,9 @@
+import { AuthProvider } from './../../shared/providers/auth/auth';
 import { TestProvider } from './../../shared/providers/test/test';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, LoadingController } from 'ionic-angular';
 import { Question } from '../../shared/interfaces/question.interface';
+import { User } from '../../shared/interfaces/user.interface';
 
 /**
  * Generated class for the TestPage page.
@@ -19,9 +21,21 @@ export class TestPage {
 
   @ViewChild(Slides) slides: Slides;
   private questions: Array<Question>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public testProvider: TestProvider) {
+  private loading: any;
+  private currentUser: User;
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public testProvider: TestProvider,
+    public loadingCtrl: LoadingController,
+    public authProvider: AuthProvider) {
+
     this.questions = this.testProvider.getTest();
-    console.log(this.questions);
+    
+    this.loading = this.loadingCtrl.create({content: 'Cargando'});
+    this.authProvider.getCurrentUser()
+    .subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   ionViewDidLoad() {
@@ -37,7 +51,20 @@ export class TestPage {
   public finishTest() {
     console.log(this.questions);
     if(this.validateTest()) {
-      this.testProvider.evaluateTest(this.questions);
+      this.testProvider.evaluateTest(this.questions)
+      .subscribe(data => {
+        this.loading.present();
+        if(data && this.currentUser) {
+          this.loading.dismiss();
+          console.log(data);
+          this.currentUser.careers = data;
+          this.currentUser.status = this.currentUser.status >= 3 ? this.currentUser.status : 3;
+          this.authProvider.updateUserData(this.currentUser);
+          this.navCtrl.push('TestResultPage');
+        } else {
+          alert('Error guardando los datos del test');
+        }
+      });
     } else {
       alert('Por favor contesta todas las preguntas!');
     }

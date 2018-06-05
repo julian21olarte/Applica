@@ -25,19 +25,21 @@ export class PersonalDataPage {
 
   ionViewDidLoad() {
     this.authProvider.getCurrentUser()
-    .subscribe(user => {
-      this.currentUser = user;
-      if(this.currentUser && this.currentUser.status < 2) {
-        alert('Por favor completa tus datos personales');
-      }
-    });    
+      .subscribe(user => {
+        this.currentUser = user;
+        if (this.currentUser && this.currentUser.status < 2) {
+          alert('Por favor completa tus datos personales');
+        }
+      });
   }
 
   public saveData() {
-    if(this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum)
-    if(this.authProvider.updateUserData(this.currentUser)) {
-      alert('Datos actualizados correctamente');
-      this.navCtrl.push('ProfilePage');
+    if (this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum) {
+      this.currentUser.status = this.currentUser.status >= 2 ? this.currentUser.status : 2;
+      if (this.authProvider.updateUserData(this.currentUser)) {
+        alert('Datos actualizados correctamente');
+        this.navCtrl.push('ProfilePage');
+      }
     }
   }
 

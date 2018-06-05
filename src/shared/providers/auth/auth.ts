@@ -307,7 +307,7 @@ export class AuthProvider {
   /**
    * get The current User in System
    */
-  public getCurrentUser(): Observable<any> {
+  public getCurrentUser(): Observable<User> {
     if(this.currentUser && localStorage.getItem('currentUser') !== null) {
       this.setCurrentUser(this.currentUser);
     }
@@ -336,11 +336,9 @@ export class AuthProvider {
   public async updateUserData(user?: User) {
     if(user && this.currentUser) {
       try {
-        console.log('status: ', user.status);
-        user.status = user.status >= 2 ? user.status : 2;
-        console.log('status: ', user.status);
         this.currentUser = user;
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+        this.setCurrentUser(this.currentUser);
         return await this.database.collection('users').doc(this.currentUser.uid).set(user);
       } catch(error) {
         alert(error);

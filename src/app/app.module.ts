@@ -21,7 +21,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {tabsPlacement:'top'}),
     AngularFireModule.initializeApp(firebaseConfig),
     SharedModule
   ],
