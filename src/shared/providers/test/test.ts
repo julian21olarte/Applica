@@ -321,7 +321,7 @@ export class TestProvider {
 
         return finalCareers
           .sort((a, b) => b.match - a.match)
-          .map(object => object.career)
+          //.map(object => object.career)
           .slice(0, 3);
       });
   }

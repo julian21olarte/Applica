@@ -21,13 +21,13 @@
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col>
         <div #resultsContainer *ngIf="currentUser && currentUser.careers">
-          <h1 ion-text color="primary" text-center>{{currentUser.careers[0].name}}
+          <h1 ion-text color="primary" style="font-size: 2.2em;" text-center>{{currentUser.careers[0].career.name}}
             <ion-icon item-start name="trophy" color="gold"></ion-icon>
           </h1>
-          <h3 ion-text color="primary" text-center>{{currentUser.careers[1].name}}
+          <h3 ion-text color="primary" text-center>{{currentUser.careers[1].career.name}}
             <ion-icon item-start name="trophy" color="silver"></ion-icon>
           </h3>
-          <h5 ion-text color="primary" text-center>{{currentUser.careers[2].name}}
+          <h5 ion-text color="primary" text-center>{{currentUser.careers[2].career.name}}
             <ion-icon item-start name="trophy" color="copper"></ion-icon>
           </h5>
         </div>
