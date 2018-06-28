@@ -12,6 +12,8 @@
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
+    "@ionic/app-scripts": "3.1.9",
+    "typescript": "~2.6.2",
     "@angular/animations": "5.2.10",
     "@angular/common": "5.2.10",
     "@angular/compiler": "5.2.10",
