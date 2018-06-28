@@ -95,5 +95,8 @@
         <variable name="TWITTER_KEY" value="GM1SOoi6Q4wCw8nPhTHklKiCE" />
         <variable name="TWITTER_SECRET" value="KkMYZ2ZTv6KqmWXKZZd9C6Y3cVpxNKg3UoEkPQIYAJljHXE8LS" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
+    </plugin>
     <engine name="android" spec="7.0.0" />
 </widget>
