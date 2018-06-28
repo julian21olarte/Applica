@@ -3,6 +3,7 @@ const app      = express();
 const morgan = require('morgan');            
 const bodyParser = require('body-parser');    
 const cors = require('cors');
+const path = require('path');
  
 app.use(morgan('dev'));                                        
 app.use(bodyParser.urlencoded({'extended':'true'}));            
@@ -18,7 +19,7 @@ app.use(function(req, res, next) {
  
 app.use(express.static('www'));
 app.get('/*', function(req,res) {
-  res.sendFile('index.html');
+  res.sendFile(path.join(__dirname+'/www/index.html'));
 });
 app.set('port', process.env.PORT || 5000);
 app.listen(app.get('port'), function () {
