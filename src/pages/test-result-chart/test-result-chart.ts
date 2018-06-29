@@ -31,9 +31,11 @@ export class TestResultChartPage {
     console.log('ionViewDidLoad TestResultChartPage');
     this.authProvider.getCurrentUser()
     .subscribe(user => {
-        this.currentUser = user;
-        this.careers = this.currentUser.careers;
-        this.loadCharts();
+        if(user) {
+            this.currentUser = user;
+            this.careers = this.currentUser.careers;
+            this.loadCharts();
+        }
     });
   }
 
