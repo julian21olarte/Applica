@@ -39,6 +39,7 @@ export class AuthProvider {
     private googlePlus: GooglePlus,
     public facebook: Facebook,
     public Twitter: TwitterConnect) {
+      this.currentUser = null;
     if (localStorage.getItem('currentUser') !== null) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
@@ -309,6 +310,7 @@ export class AuthProvider {
    */
   public getCurrentUser(): Observable<User> {
     if(this.currentUser && localStorage.getItem('currentUser') !== null) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.setCurrentUser(this.currentUser);
     }
     return this.currentUserObservable;
