@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from "rxjs/Observable";
@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/switchMap';
+import { universities } from './universities.js';
 
 @Injectable()
 export class LocationProvider {
@@ -18,6 +19,12 @@ export class LocationProvider {
   }
 
   public getUniversitiesByCurrentLocation1() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    console.log(httpOptions);
     return Observable.fromPromise(this.getCoords())
       .map(coords => {
         const location = `?location=${coords.lat},${coords.lon}`;
@@ -29,9 +36,12 @@ export class LocationProvider {
         console.log(url);
         return url;
       })
-      .mergeMap(url => this.http.get<any>(url))
+      //.mergeMap(url => this.http.get<any>(url, httpOptions))
+      .map(url => universities)
       .map(res => {
-        const results: Array<any> = res.results;
+        let u = <any>{};
+        u = res;
+        const results: Array<any> = u.results;
         return results.filter(result => result.name.toUpperCase().substring(0, 1) === 'U');
       });
   }
