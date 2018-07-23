@@ -16,8 +16,11 @@
 // automatically applied to the <body> element in the app.
 
 .avatars img{
-  margin: auto;
   height: 68px !important;
   width: 68px !important;
-  margin-bottom: 15px;
+  margin: auto auto 15px;
+}
+
+ion-list.menu-list > button {
+  background-color: transparent;
 }

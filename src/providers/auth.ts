@@ -26,6 +26,7 @@ export class AuthProvider {
 
   public currentUser: User;
   public currentUserObservable: BehaviorSubject<any>;
+  private CORDOVA: string = 'cordova';
   constructor(
     public http: HttpClient,
     private fireAuth: AngularFireAuth,
@@ -47,7 +48,7 @@ export class AuthProvider {
    * Login Facebook
    */
   public loginFacebook() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is(this.CORDOVA)) {
       return this.nativeFacebookLogin();
     } else {
       return this.webFacebookLogin();
@@ -58,7 +59,7 @@ export class AuthProvider {
    * Login Twitter
    */
   public loginTwitter() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is(this.CORDOVA)) {
       return this.nativeTwitterLogin();
     } else {
       return this.webTwitterLogin();
@@ -69,7 +70,7 @@ export class AuthProvider {
    * Login Google
    */
   public loginGoogle() {
-    if (this.platform.is('cordova')) {
+    if (this.platform.is(this.CORDOVA)) {
       return this.nativeGoogleLogin();
     } else {
       return this.webGoogleLogin();
@@ -249,7 +250,7 @@ export class AuthProvider {
     const providers = await this.fireAuth.auth.fetchSignInMethodsForEmail(email);
     if (providers.length) {
       let provider = null;
-      if(this.platform.is('cordova')) {
+      if(this.platform.is(this.CORDOVA)) {
         switch (providers[0]) {
           case 'twitter.com': provider = await this.getTwitterCredential(); break;
           case 'facebook.com': provider = await this.getFacebookCredential(); break;
@@ -264,13 +265,13 @@ export class AuthProvider {
       }
       if(provider) {
         try {
-          if(this.platform.is('cordova')) {
+          if(this.platform.is(this.CORDOVA)) {
             await this.fireAuth.auth.signInAndRetrieveDataWithCredential(provider);
           } else {
             provider.setCustomParameters({ login_hint: email });
             await this.fireAuth.auth.signInWithPopup(provider);
           }
-          const response = await this.fireAuth.auth.currentUser.linkAndRetrieveDataWithCredential(credential);
+          await this.fireAuth.auth.currentUser.linkAndRetrieveDataWithCredential(credential);
           const user = await this.loginUser();
           this.setCurrentUser(user);
           return user;
@@ -308,8 +309,8 @@ export class AuthProvider {
   public async logout() {
     try {
       localStorage.removeItem('currentUser');
+      await this.fireAuth.auth.signOut();
       this.setCurrentUser(null);
-      return await this.fireAuth.auth.signOut();
     } catch(error) {
       alert('Error al salir de la aplicacion');
     }

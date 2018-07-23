@@ -1,6 +1,7 @@
 import {LocationProvider} from "../../providers/location";
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import "rxjs-compat/add/operator/finally";
 
 /**
  * Generated class for the TestResultLocationPage page.
@@ -24,20 +25,16 @@ export class TestResultLocationPage {
     public navParams: NavParams,
     public locationProvider: LocationProvider,
     public loadingCtrl: LoadingController) {
-      this.loading = this.loadingCtrl.create({content: 'Cargando'});
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TestResultLocationPage');
-    this.loading.present();
-    this.locationProvider.getUniversitiesByCurrentLocation1()
-    .subscribe(universities => {
-      if(universities) {
-        this.loading.dismiss();
-        this.universities = universities;
-        console.log(this.universities);
-      }
-    });
+    ionViewWillEnter() {
+      this.loading = this.loadingCtrl.create({content: 'Cargando'});
+
+      this.loading.present();
+      this.locationProvider.getUniversitiesByCurrentLocation1()
+      .finally(() => this.loading.dismiss())
+      .subscribe(universities => this.universities = universities,
+      error => alert('Error al tratar de hallar coordenadas.'));
   }
 
 }

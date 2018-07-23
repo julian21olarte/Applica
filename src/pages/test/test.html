@@ -19,9 +19,9 @@
       <ion-col>
         <ion-slides *ngIf="questions">
           <ion-slide *ngFor="let question of questions; let i = index">
-            <h5>{{(i+1)}}. {{question.question}}</h5>
+            <h5 class="question-title">{{(i+1)}}. {{question.question}}</h5>
             <br>
-            <ion-list radio-group [(ngModel)]="question.answer">
+            <ion-list class="answers-list" radio-group [(ngModel)]="question.answer">
               <!-- <ion-list-header>
                       {{(i+1)}}. {{question.question}}
                   </ion-list-header> -->

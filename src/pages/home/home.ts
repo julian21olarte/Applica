@@ -1,6 +1,6 @@
 import { User } from './../../shared/interfaces/user.interface';
-import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, IonicPage, Slides} from 'ionic-angular';
 import {AuthProvider} from "../../providers/auth";
 
 @IonicPage()
@@ -10,8 +10,11 @@ import {AuthProvider} from "../../providers/auth";
 })
 export class HomePage {
 
+  @ViewChild(Slides) slides: Slides;
   private currentUser: User;
+  private skipMessage: string;
   constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
+      this.skipMessage = 'Skip';
   }
 
     ionViewWillEnter() {
@@ -23,6 +26,11 @@ export class HomePage {
           });
     }
 
+    slideChanged() {
+        if(this.slides.isEnd()) {
+            this.skipMessage = 'Vamos!';
+        }
+    }
   public goToLogin() {
     this.navCtrl.push('LoginPage');
   }

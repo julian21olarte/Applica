@@ -4,6 +4,8 @@
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
 
 // The app direction is used to include
@@ -56,6 +58,7 @@ $colors: (
   ),
   fabBlue:    rgb(38, 150, 241),
   purple:   rgb(128, 90, 197),
+  purpleLight: #C400FF,
   warning:    #c2d609,
   success: rgb(5, 177, 82),
   weatherBlue:#3bb9cf,
@@ -64,7 +67,8 @@ $colors: (
   copper: #CB6D51,
   facebook: #4267B2,
   twitter: #1DA1F2,
-  google: #DD4D42
+  google: #DD4D42,
+  background: #d58dff
 );
 
 

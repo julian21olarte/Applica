@@ -8,21 +8,40 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-grid style="height: 100%">
+    <ion-row align-items-center justify-content-center style="height: 100%">
+      <ion-slides pager  (ionSlideDidChange)="slideChanged()">
+        <ion-slide>
+          <ion-col col-12>
+            <h1 ion-text color="purpleLight" text-center>Bienvenido</h1>
+            <ion-icon name="school" color="purpleLight"></ion-icon>
+            <p ion-text color="black" text-center>Con Applica puedes conectar facilmente con universidades de tu ciudad y encontrar la carrera que deseas!</p>
+          </ion-col>
+          <!--<ion-col col-12>
+            <button *ngIf="!currentUser" ion-button color="purple" full (click)="goToLogin()">Entrar</button>
+          </ion-col>-->
+        </ion-slide>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h2 color="primary" text-center>Bienvenido</h2>
-      </ion-col>
-      <ion-row>
-        <ion-col>
-          <p text-center>Con Applica puedes conectar facilmente con universidades de tu ciudad y encontrar la carrera que deseas!</p>
-        </ion-col>
-      </ion-row>
+        <ion-slide>
+          <ion-col col-12>
+            <h1 ion-text color="purpleLight" text-center>Encuentra tu carrera!</h1>
+            <ion-icon name="analytics" color="purpleLight"></ion-icon>
+            <p ion-text color="black" text-center>Realiza nuestro test vocacional y encuentra tu carrera ideal!</p>
+          </ion-col>
+        </ion-slide>
+
+        <ion-slide>
+          <ion-col col-12>
+            <h1 ion-text color="purpleLight" text-center>Elige tu universidad!</h1>
+            <ion-icon name="pin" color="purpleLight"></ion-icon>
+            <p ion-text color="black" text-center>Puedes consultar información de las universidades mas cercanas para poder elegir la que mejor se adapte a tu perfil</p>
+          </ion-col>
+        </ion-slide>
+      </ion-slides>
     </ion-row>
     <ion-row>
       <ion-col>
-        <button *ngIf="!currentUser" ion-button color="registry" full (click)="goToLogin()">Entrar</button>
+        <p *ngIf="!currentUser" class="skip-button" ion-text text-center color="purpleLight" (click)="goToLogin()">{{skipMessage}}</p>
       </ion-col>
     </ion-row>
   </ion-grid>

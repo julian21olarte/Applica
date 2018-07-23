@@ -1,3 +1,41 @@
 page-home {
+  ion-content {
+    /*background: #00416A;
+    background: -webkit-linear-gradient(to bottom, #E4E5E6, #ABC9ED, #00416A);
+    background: linear-gradient(to bottom, #E4E5E6, #ABC9ED, #00416A);*/
+    background: lightblue;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, white, white, color($colors, background));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, white, white, color($colors, background)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
 
+  h1, p, ion-icon {
+    animation: opacity-show 2s linear;
+  }
+  h1 {
+    font-family: 'Pacifico', cursive;
+  }
+  p {
+    font-family: 'Raleway', sans-serif;
+    font-size: .9em;
+  }
+  ion-icon {
+    font-size: 4em;
+    margin: 15px 0;
+  }
+  .swiper-pagination-bullet-active {
+    background: #C400FF;
+  }
+
+  .skip-button {
+    font-weight: bold;
+  }
+}
+
+@keyframes opacity-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
