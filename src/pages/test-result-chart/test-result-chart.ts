@@ -1,4 +1,4 @@
-import { AuthProvider } from './../../shared/providers/auth/auth';
+import {AuthProvider} from "../../providers/auth";
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';

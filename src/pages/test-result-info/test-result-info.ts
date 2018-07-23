@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthProvider } from '../../shared/providers/auth/auth';
+import {AuthProvider} from "../../providers/auth";
 import { User } from '../../shared/interfaces/user.interface';
 
 /**

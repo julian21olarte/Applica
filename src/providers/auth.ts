@@ -1,19 +1,17 @@
-import { User } from './../../interfaces/user.interface';
+import { User } from '../shared/interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import * as firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
-import { first } from 'rxjs/operators/first';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthCredential } from '@firebase/auth-types';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
-import { Platform, Events } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -26,13 +24,10 @@ import { AngularFirestore } from 'angularfire2/firestore';
 @Injectable()
 export class AuthProvider {
 
-  private currentUser: User;
-  private currentUserObservable: BehaviorSubject<any>;
-  private api: string;
-  private apiUser: string;
+  public currentUser: User;
+  public currentUserObservable: BehaviorSubject<any>;
   constructor(
     public http: HttpClient,
-    public events: Events,
     private fireAuth: AngularFireAuth,
     private database: AngularFirestore,
     private platform: Platform,
@@ -42,7 +37,7 @@ export class AuthProvider {
     if (localStorage.getItem('currentUser') !== null) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
-    this.currentUserObservable = new BehaviorSubject(this.currentUser);
+    this.currentUserObservable = new BehaviorSubject(false);
   }
 
 
@@ -87,7 +82,7 @@ export class AuthProvider {
   private async nativeFacebookLogin() {
     try {
       await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getFacebookCredential());
-      const user = this.loginUser();
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch(error) {
@@ -101,7 +96,7 @@ export class AuthProvider {
   private async nativeTwitterLogin() {
     try {
       await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getTwitterCredential());
-      const user = this.loginUser();
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
@@ -115,7 +110,7 @@ export class AuthProvider {
   private async nativeGoogleLogin() {
     try {
       await this.fireAuth.auth.signInAndRetrieveDataWithCredential(await this.getGoogleCredential());
-      const user = this.loginUser();
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
@@ -133,11 +128,12 @@ export class AuthProvider {
    */
   private async webFacebookLogin() {
     try {
-      const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-      const user = this.loginUser();
+      await this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
+
       return this.loginErrorHandler(error)
     }
   }
@@ -147,8 +143,8 @@ export class AuthProvider {
    */
   private async webTwitterLogin() {
     try {
-      const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
-      const user = this.loginUser();
+      await this.fireAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
@@ -161,8 +157,8 @@ export class AuthProvider {
    */
   private async webGoogleLogin() {
     try {
-      const response = await this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      const user = this.loginUser();
+      await this.fireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      const user = await this.loginUser();
       this.setCurrentUser(user);
       return user;
     } catch (error) {
@@ -219,24 +215,15 @@ export class AuthProvider {
       image: fireUser.photoURL
     };
     const firestoreUserRef = this.database.doc('users/'+fireUser.uid);
-    // firestoreUserRef
-    // .valueChanges()
-    // .subscribe(firestoreUser => {
-    //   firestoreUser
-    //   ? this.currentUser = firestoreUser as User
-    //   : firestoreUserRef.update(this.currentUser);
-    //   localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    // });
     const firestoreUser = await firestoreUserRef
       .valueChanges()
       .take(1)
       .toPromise();
-      
+
     firestoreUser
       ? this.currentUser = firestoreUser as User
       : firestoreUserRef.update(this.currentUser);
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-    this.events.publish('user:login', this.currentUser);
     return this.currentUser;
   }
 
@@ -284,7 +271,7 @@ export class AuthProvider {
             await this.fireAuth.auth.signInWithPopup(provider);
           }
           const response = await this.fireAuth.auth.currentUser.linkAndRetrieveDataWithCredential(credential);
-          const user = this.loginUser();
+          const user = await this.loginUser();
           this.setCurrentUser(user);
           return user;
         } catch(error) {
@@ -311,7 +298,7 @@ export class AuthProvider {
     if(this.currentUser && localStorage.getItem('currentUser') !== null) {
       this.setCurrentUser(this.currentUser);
     }
-    return this.currentUserObservable;
+    return this.currentUserObservable.asObservable();
   }
 
 
@@ -321,7 +308,7 @@ export class AuthProvider {
   public async logout() {
     try {
       localStorage.removeItem('currentUser');
-      this.setCurrentUser();
+      this.setCurrentUser(null);
       return await this.fireAuth.auth.signOut();
     } catch(error) {
       alert('Error al salir de la aplicacion');

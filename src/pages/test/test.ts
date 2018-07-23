@@ -1,5 +1,5 @@
-import { AuthProvider } from './../../shared/providers/auth/auth';
-import { TestProvider } from './../../shared/providers/test/test';
+import { AuthProvider } from '../../providers/auth';
+import { TestProvider } from '../../providers/test';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, LoadingController } from 'ionic-angular';
 import { Question } from '../../shared/interfaces/question.interface';

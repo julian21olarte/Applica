@@ -1,4 +1,4 @@
-import { LocationProvider } from './../../shared/providers/location/location';
+import {LocationProvider} from "../../providers/location";
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 

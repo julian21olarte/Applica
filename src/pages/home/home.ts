@@ -1,7 +1,7 @@
 import { User } from './../../shared/interfaces/user.interface';
-import { AuthProvider } from './../../shared/providers/auth/auth';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
+import {AuthProvider} from "../../providers/auth";
 
 @IonicPage()
 @Component({
@@ -12,11 +12,16 @@ export class HomePage {
 
   private currentUser: User;
   constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
-    this.authProvider.getCurrentUser()
-    .subscribe(user => {
-      this.currentUser = user;
-    });
   }
+
+    ionViewWillEnter() {
+        console.log('ionViewDidLoad HomePage');
+        this.authProvider.getCurrentUser()
+          .subscribe(user => {
+            console.log(user);
+            this.currentUser = user;
+          });
+    }
 
   public goToLogin() {
     this.navCtrl.push('LoginPage');

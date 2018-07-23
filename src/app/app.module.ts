@@ -1,5 +1,3 @@
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AuthProvider } from './../shared/providers/auth/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -14,6 +12,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import {AuthProvider} from "../providers/auth";
+import {LocationProvider} from "../providers/location";
 @NgModule({
   declarations: [
     MyApp
@@ -33,6 +33,7 @@ import { SharedModule } from '../shared/shared.module';
     StatusBar,
     SplashScreen,
     AuthProvider,
+    LocationProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

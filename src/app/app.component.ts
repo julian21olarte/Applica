@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, NavController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthProvider } from '../shared/providers/auth/auth';
+import {AuthProvider} from "../providers/auth";
 
 @Component({
   templateUrl: 'app.html'
@@ -18,13 +18,8 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public authProvider: AuthProvider,
-    public events: Events) {
+    public authProvider: AuthProvider) {
     this.initializeApp();
-
-    this.events.subscribe('user:login', user => {
-      this.currentUser = user;
-    });
 
     this.authProvider.getCurrentUser()
     .subscribe(user => {
