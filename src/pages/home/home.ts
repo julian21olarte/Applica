@@ -23,6 +23,12 @@ export class HomePage {
       .subscribe(user => {
         console.log(user);
         this.currentUser = user;
+        // if(this.currentUser) {
+        //   if(this.currentUser.results && this.currentUser.results.length) {
+        //     alert('Ya has presentado nuestra prueba, vamos a los resultados!');
+        //     this.navCtrl.push('TestResultPage');
+        //   }
+        // }
       });
   }
 

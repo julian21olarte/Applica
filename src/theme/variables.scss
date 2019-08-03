@@ -36,14 +36,12 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  // primary:    #488aff,
-  // secondary:  #32db64,
-  // danger:     #f53d3d,
-  // light:      #f4f4f4,
-  // dark:       #222
-  primary:    #7ca7cf,
-  //primary:    #00b894,
-  secondary:  #abd9df,
+  // primary:    #7ca7cf,
+  // secondary:  #abd9df,
+  primary:   rgb(128, 90, 197),
+  secondary: #C400FF,
+
+
   danger:     #f53d3d,
   light:      #f4f4f4,
   inputlight: (
@@ -57,8 +55,6 @@ $colors: (
     contrast: white
   ),
   fabBlue:    rgb(38, 150, 241),
-  purple:   rgb(128, 90, 197),
-  purpleLight: #C400FF,
   warning:    #c2d609,
   success: rgb(5, 177, 82),
   weatherBlue:#3bb9cf,

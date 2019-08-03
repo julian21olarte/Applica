@@ -34,12 +34,18 @@ export class ProfilePage {
     .subscribe(user => {
       if(user) {
         this.currentUser = user;
-        this.personality = this.currentUser.careers[0];
+        if(this.currentUser) {
+          this.personality = this.currentUser.results[0];
+        }
       }
     });
   }
 
   public goPersonalData() {
     this.navCtrl.push('PersonalDataPage');
+  }
+
+  public goToResults() {
+    this.navCtrl.push('TestResultPage');
   }
 }

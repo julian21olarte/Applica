@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="purple">
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -31,13 +31,14 @@
 
   <ion-card *ngIf="currentUser">
     <ion-card-header>
-      <h3 ion-text color="purple">Personalidad</h3>
+      <h3 ion-text color="primary">Personalidad</h3>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item text-wrap>
-            <h2 ion-text color="purple">{{personality.name}}</h2>
+            <h2 ion-text color="primary">{{personality.name}}</h2>
             <p>{{personality.description}}</p>
+            <button ion-button float-right color="secondary" clear (click)='goToResults()'>Ver mas...</button>
         </ion-item>
       </ion-list>
     </ion-card-content>
@@ -45,7 +46,7 @@
 
   <ion-card *ngIf="currentUser">
     <ion-card-header>
-      <h3 ion-text color="purple">Avance</h3>
+      <h3 ion-text color="primary">Avance</h3>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
@@ -59,12 +60,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col>
-        <button ion-button color="registry" full (click)="goPersonalData()">Editar Información</button>
+        <button ion-button color="primary" full (click)="goPersonalData()">Editar Información</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <ion-fab top right (click)="goPersonalData()">
+    <button ion-fab mini><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

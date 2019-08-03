@@ -1,3 +1,4 @@
+import { DbProvider } from './../../providers/db';
 import { AuthProvider } from '../../providers/auth';
 import { TestProvider } from '../../providers/test';
 import { Component, ViewChild } from '@angular/core';
@@ -23,14 +24,15 @@ export class TestPage {
   @ViewChild(Slides) slides: Slides;
   private test: Test;
   private questions: Array<Question>;
-  private answers: Array<any>;
   private loading: any;
   private currentUser: User;
+  public answers: Array<any>;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public testProvider: TestProvider,
     public loadingCtrl: LoadingController,
-    public authProvider: AuthProvider) {
+    public authProvider: AuthProvider,
+    public dbProvider: DbProvider) {
 
     // fill test, answers and questions
     this.test = this.testProvider.getTest();
@@ -62,17 +64,26 @@ export class TestPage {
   }
 
   public finishTest() {
-    console.log(this.questions);
+
+    // validate test before evaluate
     if(this.validateTest()) {
+
+      // evaluate test
       this.testProvider.evaluateTest(this.questions)
       .subscribe(data => {
         this.loading.present();
         if(data && this.currentUser) {
           this.loading.dismiss();
-          console.log(data);
-          this.currentUser.status = this.currentUser.status >= 3 ? this.currentUser.status : 3;
-          this.currentUser.careers = data;
-          this.authProvider.updateUserData(this.currentUser);
+
+          this.currentUser.status = this.currentUser.status >= 3
+            ? this.currentUser.status 
+            : 3; 
+          this.currentUser.results = data;
+          if(this.currentUser.results.length) {
+            this.authProvider.updateUserData(this.currentUser);
+            this.dbProvider.countResults(this.currentUser.results);
+          }
+
           this.navCtrl.push('TestResultPage');
         } else {
           alert('Error guardando los datos del test');
@@ -84,7 +95,8 @@ export class TestPage {
   }
 
   private validateTest() {
-    return this.questions.every(question => question.answer ? true : false);
+    return this.questions
+    .every(question => question.answer ? true : false);
   }
 
 }

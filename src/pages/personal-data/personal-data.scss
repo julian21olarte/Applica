@@ -1,3 +1,9 @@
 page-personal-data {
-
+    ion-item {
+        .item-inner {
+            border-bottom-color: lightgray !important;
+            -webkit-box-shadow: inset 0 -1px 0 0 lightgray !important;
+            box-shadow: inset 0 -1px 0 0 lightgray !important;
+        }
+    }
 }

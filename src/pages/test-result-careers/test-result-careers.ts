@@ -43,8 +43,16 @@ export class TestResultCareersPage {
       .subscribe(user => {
           this.currentUser = user;
           console.log(this.currentUser)
-          this.personalities = this.currentUser.careers;
+          if(this.currentUser) {
+            this.personalities = this.currentUser.results;
+          }
       });
+  }
+  ionViewDidEnter() {
+    if(this.currentUser) {
+      this.currentUser.status = 4;
+      this.authProvider.updateUserData(this.currentUser);
+    }
   }
 
 }

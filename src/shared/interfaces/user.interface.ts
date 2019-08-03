@@ -8,5 +8,5 @@ export interface User {
   age?: number;
   institute?: string;
   stratum?: number;
-  careers?: Array<any>;
+  results?: Array<any>;
 }

@@ -1,9 +1,9 @@
 <ion-menu [content]="content" [swipeEnabled]="currentUser">
   <ion-header class="card-background-page">
-    <ion-toolbar color="purple" *ngIf="!currentUser">
+    <ion-toolbar color="primary" *ngIf="!currentUser">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
-    <ion-item color="purple" *ngIf="currentUser">
+    <ion-item color="primary" *ngIf="currentUser">
       <ion-avatar item-center class="avatars">
         <img src="{{currentUser.image}}">
       </ion-avatar>

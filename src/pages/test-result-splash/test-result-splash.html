@@ -1,0 +1,16 @@
+<ion-content padding>
+  <ion-grid style="height: 100%">
+    <ion-row text-center align-items-center justify-content-center style="height: 100%">
+        <ion-col col-12>
+          <h1 ion-text color="secondary" text-center>Felicidades</h1>
+          <ion-icon name="school" color="secondary"></ion-icon>
+          <p ion-text color="black" text-center>Terminaste nuestro test!</p>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+          <p class="skip-button" ion-text text-center color="secondary" (click)="goToResult()">{{skipMessage}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

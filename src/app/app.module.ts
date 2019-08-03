@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import { DbProvider } from './../providers/db';
 import {AuthProvider} from "../providers/auth";
 import {LocationProvider} from "../providers/location";
 @NgModule({
@@ -33,6 +34,7 @@ import {LocationProvider} from "../providers/location";
     StatusBar,
     SplashScreen,
     AuthProvider,
+    DbProvider,
     LocationProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

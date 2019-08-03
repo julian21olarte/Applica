@@ -22,23 +22,25 @@ export class TestResultChartPage {
 
   @ViewChild('bars') barsCanvas;
   @ViewChild('pie') pieCanvas;
-  @ViewChild('radar') radarCanvas;
+  //@ViewChild('radar') radarCanvas;
   public barsChart: any;
   public pieChart: any;
-  public radarChart: any;
+  //public radarChart: any;
   public currentUser: User;
   public careers: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
   }
 
-  async ionViewDidLoad() {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad TestResultChartPage');
     this.authProvider.getCurrentUser()
-    .subscribe(user => {
-        this.currentUser = user;
-        this.careers = this.currentUser.careers;
-        this.loadCharts();
-    });
+      .subscribe(user => { 
+          this.currentUser = user;
+          if(this.currentUser) {
+            this.careers = this.currentUser.results;
+            this.loadCharts();
+          }
+      });
   }
 
   private loadCharts() {
@@ -95,20 +97,20 @@ export class TestResultChartPage {
 
     // config charts
     this.barsChart = new Chart(this.barsCanvas.nativeElement, {
-        type: 'bar',
-        data: chartFields.data,
-        options: chartFields.options
+      type: 'bar',
+      data: chartFields.data,
+      options: chartFields.options
     });
 
     this.pieChart = new Chart(this.pieCanvas.nativeElement, {
       type: 'doughnut',
-        data: chartFields.data,
+      data: chartFields.data,
     })
 
-    this.radarChart = new Chart(this.radarCanvas.nativeElement, {
-        type: 'polarArea',
-        data: chartFields.data,
-        options: chartFields.options
-    });
+    // this.radarChart = new Chart(this.radarCanvas.nativeElement, {
+    //   type: 'polarArea',
+    //   data: chartFields.data,
+    //   options: chartFields.options
+    // });
   }
 }
