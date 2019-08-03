@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="purple">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -21,15 +21,15 @@
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col>
         <div #resultsContainer *ngIf="currentUser && currentUser.careers">
-          <h1 ion-text color="primary" style="font-size: 2.2em;" text-center>{{currentUser.careers[0].name}}
+          <h1 ion-text color="purple" style="font-size: 2.2em;" text-center>{{currentUser.careers[0].name}}
             <ion-icon item-start name="trophy" color="gold"></ion-icon>
           </h1>
           <p>{{currentUser.careers[0].description}}</p>
-          <h3 ion-text color="primary" text-center>{{currentUser.careers[1].name}}
+          <h3 ion-text color="purple" text-center>{{currentUser.careers[1].name}}
             <ion-icon item-start name="trophy" color="silver"></ion-icon>
           </h3>
           <p>{{currentUser.careers[1].description}}</p>
-          <h5 ion-text color="primary" text-center>{{currentUser.careers[2].name}}
+          <h5 ion-text color="purple" text-center>{{currentUser.careers[2].name}}
             <ion-icon item-start name="trophy" color="copper"></ion-icon>
           </h5>
           <p>{{currentUser.careers[2].description}}</p>

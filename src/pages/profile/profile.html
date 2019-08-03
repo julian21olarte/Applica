@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="purple">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -31,12 +31,12 @@
 
   <ion-card *ngIf="currentUser">
     <ion-card-header>
-      <h3 ion-text color="primary">Personalidad</h3>
+      <h3 ion-text color="purple">Personalidad</h3>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item text-wrap>
-            <h2 ion-text color="primary">{{personality.name}}</h2>
+            <h2 ion-text color="purple">{{personality.name}}</h2>
             <p>{{personality.description}}</p>
         </ion-item>
       </ion-list>
@@ -45,7 +45,7 @@
 
   <ion-card *ngIf="currentUser">
     <ion-card-header>
-      <h3 ion-text color="primary">Avance</h3>
+      <h3 ion-text color="purple">Avance</h3>
     </ion-card-header>
     <ion-card-content>
       <ion-list>

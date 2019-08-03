@@ -20,8 +20,12 @@ import { User } from '../../shared/interfaces/user.interface';
 })
 export class TestResultChartPage {
 
-  @ViewChild('canvas') canvas;
-  public chart: any;
+  @ViewChild('bars') barsCanvas;
+  @ViewChild('pie') pieCanvas;
+  @ViewChild('radar') radarCanvas;
+  public barsChart: any;
+  public pieChart: any;
+  public radarChart: any;
   public currentUser: User;
   public careers: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
@@ -42,52 +46,69 @@ export class TestResultChartPage {
         .map(career => career.match)
         .reduce((a, b) => a + b);
 
+    // reused chart data, options
+    let chartFields = {
+      data: {
+        labels: this.careers.map(career => career.name),
+        datasets: [{
+            label: 'Personalidades',
+            data: this.careers.map(career => ((career.match * 100) / total).toFixed(1)),
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(153, 102, 255, 0.2)'
+          ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(255, 159, 64, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(153, 102, 255, 1)'
+          ],
+            borderWidth: 1
+        }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      min: 0,
+                      max: 100,
+                      callback: function(value) {
+                          return value + "%"
+                      }
+                  }
+              }],
+              xAxes: [{
+                  scaleLabel: {
+                      display: true,
+                      labelString: "Personalidades"
+                  }
+              }]
+          }
+      }
+    }
 
-    this.chart = new Chart(this.canvas.nativeElement, {
+    // config charts
+    this.barsChart = new Chart(this.barsCanvas.nativeElement, {
         type: 'bar',
-        data: {
-            labels: this.careers.map(career => career.name),
-            datasets: [{
-                label: 'Carreras',
-                data: this.careers.map(career => ((career.match * 100) / total).toFixed(1)),
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(255, 159, 64, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(153, 102, 255, 0.2)'
-              ],
-                borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(153, 102, 255, 1)'
-              ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                        max: 100,
-                        callback: function(value) {
-                            return value + "%"
-                        }
-                    }
-                }],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Carreras"
-                    }
-                }]
-            }
-        }
+        data: chartFields.data,
+        options: chartFields.options
+    });
+
+    this.pieChart = new Chart(this.pieCanvas.nativeElement, {
+      type: 'doughnut',
+        data: chartFields.data,
+    })
+
+    this.radarChart = new Chart(this.radarCanvas.nativeElement, {
+        type: 'polarArea',
+        data: chartFields.data,
+        options: chartFields.options
     });
   }
 }

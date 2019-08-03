@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="purple">
     <ion-title>Test</ion-title>
   </ion-navbar>
 
@@ -31,7 +31,7 @@
               </ion-item>
             </ion-list>
             <br>
-            <button *ngIf="(i + 1) != questions.length" ion-button float-center color="primary" (click)="next(i)">Siguiente</button>
+            <button *ngIf="(i + 1) != questions.length" ion-button float-center color="purple" (click)="next(i)">Siguiente</button>
             <button *ngIf="(i + 1) == questions.length" ion-button float-center color="success" (click)="finishTest()">Finalizar</button>
           </ion-slide>
         </ion-slides>

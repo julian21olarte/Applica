@@ -14,23 +14,23 @@ export class HomePage {
   public currentUser: User;
   public skipMessage: string;
   constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
-      this.skipMessage = 'Skip';
+      this.skipMessage = 'saltar';
   }
 
-    ionViewWillEnter() {
-        console.log('ionViewDidLoad HomePage');
-        this.authProvider.getCurrentUser()
-          .subscribe(user => {
-            console.log(user);
-            this.currentUser = user;
-          });
-    }
+  ionViewWillEnter() {
+    console.log('ionViewDidLoad HomePage');
+    this.authProvider.getCurrentUser()
+      .subscribe(user => {
+        console.log(user);
+        this.currentUser = user;
+      });
+  }
 
-    slideChanged() {
-        if(this.slides.isEnd()) {
-            this.skipMessage = 'Vamos!';
-        }
+  slideChanged() {
+    if(this.slides.isEnd()) {
+        this.skipMessage = 'Vamos!';
     }
+  }
   public goToLogin() {
     this.navCtrl.push('LoginPage');
   }

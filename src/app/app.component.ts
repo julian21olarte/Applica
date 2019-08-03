@@ -43,6 +43,6 @@ export class MyApp {
 
   public async logout() {
     await this.authProvider.logout();
-    this.nav.push('HomePage');
+    this.nav.push('LoginPage');
   }
 }

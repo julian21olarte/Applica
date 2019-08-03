@@ -32,8 +32,10 @@ export class ProfilePage {
   ionViewDidLoad() {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
-      this.currentUser = user;
-      this.personality = this.currentUser.careers[0];
+      if(user) {
+        this.currentUser = user;
+        this.personality = this.currentUser.careers[0];
+      }
     });
   }
 

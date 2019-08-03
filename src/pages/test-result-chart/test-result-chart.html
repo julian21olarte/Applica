@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
+  <ion-navbar color="purple">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -17,5 +17,26 @@
 
 
 <ion-content>
-  <canvas #canvas height="220px"></canvas>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <canvas #bars height="260px"></canvas>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+          <canvas #pie height="260px"></canvas>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+          <canvas #radar height="260px"></canvas>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>
