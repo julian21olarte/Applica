@@ -19,7 +19,7 @@ import { User } from '../../shared/interfaces/user.interface';
 })
 export class TestResultSplashPage {
 
-  private skipMessage: string;
+  public skipMessage: string;
   public currentUser: User;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
     this.skipMessage = 'Ver los resultados';

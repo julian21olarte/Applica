@@ -40,4 +40,8 @@ export class HomePage {
   public goToLogin() {
     this.navCtrl.push('LoginPage');
   }
+  
+  public goToProfile() {
+    this.navCtrl.push('ProfilePage');
+  }
 }

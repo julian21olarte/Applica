@@ -42,6 +42,7 @@
     <ion-row>
       <ion-col>
         <p *ngIf="!currentUser" class="skip-button" ion-text text-center color="secondary" (click)="goToLogin()">{{skipMessage}}</p>
+        <p *ngIf="currentUser" class="skip-button" ion-text text-center color="secondary" (click)="goToProfile()">Cerrar</p>
       </ion-col>
     </ion-row>
   </ion-grid>

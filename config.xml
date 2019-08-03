@@ -22,6 +22,10 @@
     <preference name="TwitterConsumerKey" value="GM1SOoi6Q4wCw8nPhTHklKiCE" />
     <preference name="TwitterConsumerSecret" value="KkMYZ2ZTv6KqmWXKZZd9C6Y3cVpxNKg3UoEkPQIYAJljHXE8LS" />
     <platform name="android">
+        <config-file parent="/resources" target="./res/values/strings.xml">
+            <string name="fb_app_id">1715901868491385</string>
+            <string name="fb_app_name">Applica</string>
+        </config-file>
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />

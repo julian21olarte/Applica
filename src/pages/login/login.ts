@@ -50,7 +50,7 @@ export class LoginPage {
         alert('Por favor completa tus datos personales...');
         page = 'PersonalDataPage';
       }
-      this.navCtrl.push(page);
+      this.navCtrl.setRoot(page);
     } else {
       alert('error en la autenticacion');
     }

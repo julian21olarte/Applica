@@ -2,7 +2,7 @@ import { User } from '../shared/interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
@@ -235,6 +235,8 @@ export class AuthProvider {
   private loginErrorHandler(errorResponse: any) {
     const email = errorResponse.email;
     const credential = errorResponse.credential;
+    console.log(errorResponse)
+    alert(errorResponse)
     if (errorResponse.code !== 'auth/account-exists-with-different-credential') {
       return null;
     }

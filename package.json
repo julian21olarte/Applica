@@ -8,7 +8,7 @@
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
-    "ionic:build": "ionic-app-scripts build",
+    "ionic:build": "node --max-old-space-size=12288 ./node_modules/@ionic/app-scripts/bin/ionic-app-scripts.js build",
     "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
@@ -58,7 +58,8 @@
     "plugins": {
       "cordova-plugin-facebook4": {
         "APP_ID": "1715901868491385",
-        "APP_NAME": "Applica"
+        "APP_NAME": "Applica",
+        "ANDROID_SDK_VERSION": "4.+"
       },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
