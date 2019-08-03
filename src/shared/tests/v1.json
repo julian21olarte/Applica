@@ -1,0 +1,100 @@
+{
+    "questions":[
+        {
+            "category": "Realista",
+            "questions": [
+                "Prefiero los trabajos manuales con herramientas.",
+                "Prefiero las actividades físicas.",
+                "Prefiero trabajar fuera de la oficina.",
+                "Me gusta reparar por mi cuenta las cosas que se dañan.",
+                "He usado herramientas eléctricas.",
+                "Manejar un tractor agrícola.",
+                "Me gusta reforzar las leyes o normas.",
+                "Realizo deportes al aire libre.",
+                "Prefiero estar sentado manejando por horas.",
+                "Me gusta la botánica."
+            ]
+        },
+
+        {
+            "category": "Investigador",
+            "questions": [
+                "Prefiero los proyectos científicos.",
+                "Me gusta la química.",
+                "Prefiero manejar ideas abstractas y analíticas.",
+                "Me gusta reunir información y analizarla.",
+                "Me considero curioso(a).",
+                "Investigó las causas de los fenómenos naturales.",
+                "Evaluar los resultados finales de un proyecto.",
+                "Estudiar todas las necesidades de las comunas.",
+                "Me gusta estudiar y aprender el comportamiento humano.",
+                "Prefiero ver documentales de ciencia."
+            ]
+        },
+
+        {
+            "category": "Artístico",
+            "questions": [
+                "Me gusta expresarme por medio del arte.",
+                "Me gusta hacer bosquejos o dibujos.",
+                "Me gusta tomar cursos de arte.",
+                "Fotografío a las personas o las escenas naturales.",
+                "Me gusta diseñar edificios.",
+                "Me gusta tocar instrumentos musicales.",
+                "Me gusta dirigir cortometrajes u obras de teatro.",
+                "Prefiero estar al día con las noticias y todo lo que sucede.",
+                "Prefiero ser modelo en shows de moda.",
+                "Escribo todo lo que me sucede en un cuaderno o diario."
+            ]
+        },
+
+        {
+            "category": "Social",
+            "questions": [
+                "Me gusta escribir cartas.",
+                "Leo artículos psicológicos.",
+                "Me gusta ayudar a las demás personas.",
+                "Prefiero trabajar en grupo.",
+                "Tengo habilidad para expresarme ante los demás.",
+                "He participado como voluntario en organizaciones sociales.",
+                "Soy un buen anfitrión.",
+                "Tengo la habilidad de planear pasatiempos.",
+                "Me gusta mantener el orden en los diferentes ambientes de estudio.",
+                "Doy consejos a las personas cuando me lo piden."
+            ]
+        },
+
+        {
+            "category": "Emprendedor",
+            "questions": [
+                "Tengo liderazgo.",
+                "Mi personalidad es administrativa.",
+                "Me gusta discutir sobre política",
+                "Trato de sobresalir en todo lo que hago.",
+                "Me gusta conocer personas influyentes.",
+                "Busco la manera de hacer siempre buenos negocios.",
+                "Intento desafiar mis conocimientos con nuevos retos.",
+                "Supervisar a los demás para que hagan bien su trabajo.",
+                "Soy una persona proactiva.",
+                "Soy muy flexible a la hora de apoyar a mis compañeros de equipo."
+            ]
+        },
+
+        {
+            "category": "Convencional",
+            "questions": [
+                "Me gusta trabajar con números.",
+                "Me gusta cumplir las normas y los reglamentos.",
+                "Me gusta tener organizado todo por carpetas en mi ordenador.",
+                "Prefiero hacer listas.",
+                "Me gusta hacer llevar un registro de gastos.",
+                "Resolver problemas aplicando fórmulas o modelos matemáticos.",
+                "Leer los medidores y establecer el uso adecuado de cada servicio.",
+                "Llevar la contabilidad de las demás personas u empresas.",
+                "Organizar fotografías por fecha.",
+                "Prefiero estar seguro(a) que mis emails no tengan errores antes de enviarlos."
+            ]
+        }
+
+    ]
+}

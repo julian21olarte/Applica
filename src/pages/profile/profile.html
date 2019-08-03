@@ -31,7 +31,21 @@
 
   <ion-card *ngIf="currentUser">
     <ion-card-header>
-      <h3 color="primary">Avance</h3>
+      <h3 ion-text color="primary">Personalidad</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item text-wrap>
+            <h2 ion-text color="primary">{{personality.name}}</h2>
+            <p>{{personality.description}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="currentUser">
+    <ion-card-header>
+      <h3 ion-text color="primary">Avance</h3>
     </ion-card-header>
     <ion-card-content>
       <ion-list>

@@ -4,6 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, LoadingController } from 'ionic-angular';
 import { Question } from '../../shared/interfaces/question.interface';
 import { User } from '../../shared/interfaces/user.interface';
+import { Test } from '../../shared/interfaces/test.interface';
 
 /**
  * Generated class for the TestPage page.
@@ -20,7 +21,9 @@ import { User } from '../../shared/interfaces/user.interface';
 export class TestPage {
 
   @ViewChild(Slides) slides: Slides;
+  private test: Test;
   private questions: Array<Question>;
+  private answers: Array<any>;
   private loading: any;
   private currentUser: User;
   constructor(public navCtrl: NavController,
@@ -29,7 +32,17 @@ export class TestPage {
     public loadingCtrl: LoadingController,
     public authProvider: AuthProvider) {
 
-    this.questions = this.testProvider.getTest();
+    // fill test, answers and questions
+    this.test = this.testProvider.getTest();
+    this.questions = this.test.questions;
+
+    this.answers = [
+      {description: 'Totalmente deacuerdo', code: 5},
+      {description: 'Deacuerdo', code: 4},
+      {description: 'Ni de acuerdo, ni en desacuerdo (Neutral)', code: 3},
+      {description: 'En desacuerdo', code: 2},
+      {description: 'Totalmente en desacuerdo', code: 1},
+    ];
     
     this.loading = this.loadingCtrl.create({content: 'Cargando'});
     this.authProvider.getCurrentUser()

@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController, Events } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AuthProvider} from "../providers/auth";
+import { User } from '../shared/interfaces/user.interface';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +13,7 @@ export class MyApp {
 
   rootPage: any = 'HomePage';
 
-  private currentUser: any;
+  public currentUser: User;
 
   constructor(
     public platform: Platform,
@@ -41,7 +42,7 @@ export class MyApp {
   }
 
   public async logout() {
-    const response = await this.authProvider.logout();
+    await this.authProvider.logout();
     this.nav.push('HomePage');
   }
 }

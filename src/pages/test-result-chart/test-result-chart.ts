@@ -46,7 +46,7 @@ export class TestResultChartPage {
     this.chart = new Chart(this.canvas.nativeElement, {
         type: 'bar',
         data: {
-            labels: this.careers.map(career => career.career.name),
+            labels: this.careers.map(career => career.name),
             datasets: [{
                 label: 'Carreras',
                 data: this.careers.map(career => ((career.match * 100) / total).toFixed(1)),

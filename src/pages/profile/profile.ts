@@ -17,8 +17,9 @@ import { User } from '../../shared/interfaces/user.interface';
 })
 export class ProfilePage {
 
-  private currentUser: User;
-  private phases: Array<any>;
+  public currentUser: User;
+  public phases: Array<any>;
+  public personality: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
     this.phases = [
       {description: "Registrate con tu red social favorita"},
@@ -32,6 +33,7 @@ export class ProfilePage {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
       this.currentUser = user;
+      this.personality = this.currentUser.careers[0];
     });
   }
 

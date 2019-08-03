@@ -2,18 +2,18 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../../providers/location';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { TestResultLocationPage } from './test-result-location';
+import { TestResultCareersPage } from './test-result-careers';
 
 @NgModule({
   declarations: [
-    TestResultLocationPage,
+    TestResultCareersPage,
   ],
   imports: [
-    IonicPageModule.forChild(TestResultLocationPage),
+    IonicPageModule.forChild(TestResultCareersPage),
   ],
   providers: [
     LocationProvider,
     Geolocation
   ]
 })
-export class TestResultLocationPageModule {}
+export class TestResultCareersPageModule {}

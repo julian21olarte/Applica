@@ -1,0 +1,36 @@
+{
+    "questions":[
+        {
+            "category": "Realista",
+            "questions": [
+                "Prefiero los trabajos manuales con herramientas.",
+                "Prefiero las actividades físicas.",
+                "Prefiero trabajar fuera de la oficina.",
+                "Me gusta reparar por mi cuenta las cosas que se dañan.",
+                "He usado herramientas eléctricas.",
+                "Manejar un tractor agrícola.",
+                "Me gusta reforzar las leyes o normas.",
+                "Realizo deportes al aire libre.",
+                "Prefiero estar sentado manejando por horas.",
+                "Me gusta la botánica."
+            ]
+        },
+
+        {
+            "category": "Investigador",
+            "questions": [
+                "Prefiero los proyectos científicos.",
+                "Me gusta la química.",
+                "Prefiero manejar ideas abstractas y analíticas.",
+                "Me gusta reunir información y analizarla.",
+                "Me considero curioso(a).",
+                "Investigó las causas de los fenómenos naturales.",
+                "Evaluar los resultados finales de un proyecto.",
+                "Estudiar todas las necesidades de las comunas.",
+                "Me gusta estudiar y aprender el comportamiento humano.",
+                "Prefiero ver documentales de ciencia."
+            ]
+        }
+
+    ]
+}

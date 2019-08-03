@@ -18,7 +18,7 @@ import { User } from '../../shared/interfaces/user.interface';
   templateUrl: 'test-result-info.html',
 })
 export class TestResultInfoPage {
-  private currentUser: User;
+  public currentUser: User;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
     this.authProvider.getCurrentUser()
     .subscribe(user => {

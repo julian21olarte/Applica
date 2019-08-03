@@ -11,8 +11,8 @@ import {AuthProvider} from "../../providers/auth";
 export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
-  private currentUser: User;
-  private skipMessage: string;
+  public currentUser: User;
+  public skipMessage: string;
   constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
       this.skipMessage = 'Skip';
   }

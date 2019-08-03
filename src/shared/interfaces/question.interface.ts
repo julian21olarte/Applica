@@ -1,6 +1,10 @@
 export interface Question {
-  question: string;
   category: string;
-  answers: Array<any>;
+  question: string;
   answer?: number;
+}
+
+export interface RawQuestion {
+  category: string;
+  questions: Array<string>;
 }

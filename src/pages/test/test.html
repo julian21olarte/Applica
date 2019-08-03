@@ -25,7 +25,7 @@
               <!-- <ion-list-header>
                       {{(i+1)}}. {{question.question}}
                   </ion-list-header> -->
-              <ion-item *ngFor="let answer of question.answers" text-wrap>
+              <ion-item *ngFor="let answer of answers" text-wrap>
                 <ion-label>{{answer.description}}</ion-label>
                 <ion-radio [value]=answer.code></ion-radio>
               </ion-item>

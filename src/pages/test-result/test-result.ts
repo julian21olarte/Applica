@@ -23,7 +23,7 @@ export class TestResultPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.tab1 = 'TestResultInfo';
     this.tab2 = 'TestResultChart';
-    this.tab3 = 'TestResultLocation';
+    this.tab3 = 'TestResultCareers';
   }
 
   ionViewDidLoad() {
