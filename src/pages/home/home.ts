@@ -17,7 +17,7 @@ export class HomePage {
       this.skipMessage = 'saltar';
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     this.authProvider.getCurrentUser()
       .subscribe(user => {
@@ -40,7 +40,7 @@ export class HomePage {
   public goToLogin() {
     this.navCtrl.push('LoginPage');
   }
-  
+
   public goToProfile() {
     this.navCtrl.push('ProfilePage');
   }

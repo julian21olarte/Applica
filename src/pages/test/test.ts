@@ -46,7 +46,6 @@ export class TestPage {
       {description: 'Totalmente en desacuerdo', code: 1},
     ];
     
-    this.loading = this.loadingCtrl.create({content: 'Cargando'});
     this.authProvider.getCurrentUser()
     .subscribe(user => {
       this.currentUser = user;
@@ -67,24 +66,22 @@ export class TestPage {
 
     // validate test before evaluate
     if(this.validateTest()) {
-
+      this.loading = this.loadingCtrl.create({content: 'Cargando'});
       // evaluate test
       this.testProvider.evaluateTest(this.questions)
       .subscribe(data => {
+        
         this.loading.present();
         if(data && this.currentUser) {
           this.loading.dismiss();
-
           this.currentUser.status = this.currentUser.status >= 3
             ? this.currentUser.status 
-            : 3; 
+            : 3;
           this.currentUser.results = data;
-          if(this.currentUser.results.length) {
-            this.authProvider.updateUserData(this.currentUser);
-            this.dbProvider.countResults(this.currentUser.results);
-          }
+          this.authProvider.updateUserData(this.currentUser);
+          this.dbProvider.countResults(this.currentUser.results);
 
-          this.navCtrl.push('TestResultPage');
+          return this.navCtrl.push('TestResultSplashPage');
         } else {
           alert('Error guardando los datos del test');
         }

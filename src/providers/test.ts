@@ -59,6 +59,8 @@ export class TestProvider {
         return this.database
             .collection('typologies')
             .valueChanges()
+            // take only the first value emited, avoid infinite loops if the collection is updadted after
+            .take(1)
             .map((typologies: any) => {
                 let finalCareers = [];
                 typologies.forEach(typology => {
@@ -70,7 +72,6 @@ export class TestProvider {
 
                 return finalCareers
                     .sort((a, b) => b.match - a.match)
-                    //.map(object => object.career)
                     .slice(0, 3);
             });
     }
