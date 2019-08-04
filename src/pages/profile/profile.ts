@@ -27,18 +27,20 @@ export class ProfilePage {
       {description: "Presenta nuestro test aptitudinal"},
       {description: "Descubre tu carrera profesional"}
     ]
-  }
 
-  ionViewDidLoad() {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
       if(user) {
         this.currentUser = user;
-        if(this.currentUser) {
+        if(this.currentUser && this.currentUser.results) {
           this.personality = this.currentUser.results[0];
         }
       }
     });
+  }
+
+  ionViewDidLoad() {
+    
   }
 
   public goPersonalData() {

@@ -223,7 +223,7 @@ export class AuthProvider {
 
     firestoreUser
       ? this.currentUser = firestoreUser as User
-      : firestoreUserRef.update(this.currentUser);
+      : firestoreUserRef.set(this.currentUser);
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     return this.currentUser;
   }

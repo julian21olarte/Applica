@@ -26,7 +26,8 @@ export class TestProvider {
             item.questions.forEach(question => {
                 let newQuestion = <Question> {
                     category: item.category,
-                    question: question
+                    question: question.question,
+                    image: question.image
                 }
                 this.test.questions.push(newQuestion)
             })
@@ -34,6 +35,7 @@ export class TestProvider {
     }
 
     public getTest(): Test {
+        console.log(this.test)
         return this.test;
     }
 
@@ -77,26 +79,6 @@ export class TestProvider {
     }
 
     private getMatchCareers(name: string, values: Map<string, number>): number {
-        // let match = 0;
-
-        // const includes = (value) => {
-        //     return areas.indexOf(value) >= 0;
-        // };
-
-        // if (areas[0] === values[0] && areas[1] === values[1] && areas[2] === values[2]) {
-        //     match = 6;
-        // } else if (areas[0] === values[0] && areas[1] === values[1]) {
-        //     match = 5;
-        // } else if (areas[0] === values[0]) {
-        //     match = 4;
-        // } else if (includes(values[0]) && includes(values[1]) && includes(values[2])) {
-        //     match = 3;
-        // } else if ((includes(values[0]) && includes(values[1])) || (includes(values[1]) && includes(values[2])) || (includes(values[0]) && includes(values[2]))) {
-        //     match = 2;
-        // } else if (includes(values[0]) || includes(values[1]) || includes(values[2])) {
-        //     match = 1;
-        // }
-        // return match;
         return values.get(name) || 0
     }
 

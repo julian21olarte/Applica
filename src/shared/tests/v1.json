@@ -3,96 +3,96 @@
         {
             "category": "Realista",
             "questions": [
-                "Prefiero los trabajos manuales con herramientas.",
-                "Prefiero las actividades físicas.",
-                "Prefiero trabajar fuera de la oficina.",
-                "Me gusta reparar por mi cuenta las cosas que se dañan.",
-                "He usado herramientas eléctricas.",
-                "Manejar un tractor agrícola.",
-                "Me gusta reforzar las leyes o normas.",
-                "Realizo deportes al aire libre.",
-                "Prefiero estar sentado manejando por horas.",
-                "Me gusta la botánica."
+                { "question": "Prefiero los trabajos manuales con herramientas.", "image": "Realista1.jpg"},
+                { "question": "Prefiero las actividades físicas.", "image": "Realista2.jpg"},
+                { "question": "Prefiero trabajar fuera de la oficina.", "image": "Realista3.jpg"},
+                { "question": "Me gusta reparar por mi cuenta las cosas que se dañan.", "image": "Realista4.jpg"},
+                { "question": "He usado herramientas eléctricas.", "image": "Realista5.jpg"},
+                { "question": "Manejar un tractor agrícola.", "image": "Realista6.jpg"},
+                { "question": "Me gusta reforzar las leyes o normas.", "image": "Realista7.jpg"},
+                { "question": "Realizo deportes al aire libre.", "image": "Realista8.jpg"},
+                { "question": "Prefiero estar sentado manejando por horas.", "image": "Realista9.jpg"},
+                { "question": "Me gusta la botánica.", "image": "Realista10.jpg"}
             ]
         },
 
         {
             "category": "Investigador",
             "questions": [
-                "Prefiero los proyectos científicos.",
-                "Me gusta la química.",
-                "Prefiero manejar ideas abstractas y analíticas.",
-                "Me gusta reunir información y analizarla.",
-                "Me considero curioso(a).",
-                "Investigó las causas de los fenómenos naturales.",
-                "Evaluar los resultados finales de un proyecto.",
-                "Estudiar todas las necesidades de las comunas.",
-                "Me gusta estudiar y aprender el comportamiento humano.",
-                "Prefiero ver documentales de ciencia."
+                { "question": "Prefiero los proyectos científicos.", "image": "Investigador1.jpg"},
+                { "question": "Me gusta la química.", "image": "Investigador2.jpg"},
+                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.jpg"},
+                { "question": "Me gusta reunir información y analizarla.", "image": "Investigador4.jpg"},
+                { "question": "Me considero curioso(a).", "image": "Investigador5.jpg"},
+                { "question": "Investigó las causas de los fenómenos naturales.", "image": "Investigador6.jpg"},
+                { "question": "Evaluar los resultados finales de un proyecto.", "image": "Investigador7.jpg"},
+                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.jpg"},
+                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.jpg"},
+                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.jpg"}
             ]
         },
 
         {
             "category": "Artístico",
             "questions": [
-                "Me gusta expresarme por medio del arte.",
-                "Me gusta hacer bosquejos o dibujos.",
-                "Me gusta tomar cursos de arte.",
-                "Fotografío a las personas o las escenas naturales.",
-                "Me gusta diseñar edificios.",
-                "Me gusta tocar instrumentos musicales.",
-                "Me gusta dirigir cortometrajes u obras de teatro.",
-                "Prefiero estar al día con las noticias y todo lo que sucede.",
-                "Prefiero ser modelo en shows de moda.",
-                "Escribo todo lo que me sucede en un cuaderno o diario."
+                { "question": "Me gusta expresarme por medio del arte.", "image": "Artistico1.jpg"},
+                { "question": "Me gusta hacer bosquejos o dibujos.", "image": "Artistico2.jpg"},
+                { "question": "Me gusta tomar cursos de arte.", "image": "Artistico3.jpg"},
+                { "question": "Fotografío a las personas o las escenas naturales.", "image": "Artistico4.jpg"},
+                { "question": "Me gusta diseñar edificios.", "image": "Artistico5.jpg"},
+                { "question": "Me gusta tocar instrumentos musicales.", "image": "Artistico6.jpg"},
+                { "question": "Me gusta dirigir cortometrajes u obras de teatro.", "image": "Artistico7.jpg"},
+                { "question": "Prefiero estar al día con las noticias y todo lo que sucede.", "image": "Artistico8.jpg"},
+                { "question": "Prefiero ser modelo en shows de moda.", "image": "Artistico9.png"},
+                { "question": "Escribo todo lo que me sucede en un cuaderno o diario.", "image": "Artistico10.jpg"}
             ]
         },
 
         {
             "category": "Social",
             "questions": [
-                "Me gusta escribir cartas.",
-                "Leo artículos psicológicos.",
-                "Me gusta ayudar a las demás personas.",
-                "Prefiero trabajar en grupo.",
-                "Tengo habilidad para expresarme ante los demás.",
-                "He participado como voluntario en organizaciones sociales.",
-                "Soy un buen anfitrión.",
-                "Tengo la habilidad de planear pasatiempos.",
-                "Me gusta mantener el orden en los diferentes ambientes de estudio.",
-                "Doy consejos a las personas cuando me lo piden."
+                { "question": "Me gusta escribir cartas.", "image": "Social1.jpg"},
+                { "question": "Leo artículos psicológicos.", "image": "Social2.jpg"},
+                { "question": "Me gusta ayudar a las demás personas.", "image": "Social3.jpg"},
+                { "question": "Prefiero trabajar en grupo.", "image": "Social4.jpg"},
+                { "question": "Tengo habilidad para expresarme ante los demás.", "image": "Social5.jpg"},
+                { "question": "He participado como voluntario en organizaciones sociales.", "image": "Social6.jpg"},
+                { "question": "Soy un buen anfitrión.", "image": "Social7.jpg"},
+                { "question": "Tengo la habilidad de planear pasatiempos.", "image": "Social8.jpg"},
+                { "question": "Me gusta mantener el orden en los diferentes ambientes de estudio.", "image": "Social9.jpg"},
+                { "question": "Doy consejos a las personas cuando me lo piden.", "image": "Social10.jpg"}
             ]
         },
 
         {
             "category": "Emprendedor",
             "questions": [
-                "Tengo liderazgo.",
-                "Mi personalidad es administrativa.",
-                "Me gusta discutir sobre política",
-                "Trato de sobresalir en todo lo que hago.",
-                "Me gusta conocer personas influyentes.",
-                "Busco la manera de hacer siempre buenos negocios.",
-                "Intento desafiar mis conocimientos con nuevos retos.",
-                "Supervisar a los demás para que hagan bien su trabajo.",
-                "Soy una persona proactiva.",
-                "Soy muy flexible a la hora de apoyar a mis compañeros de equipo."
+                { "question": "Tengo liderazgo.", "image": "Emprendedor1.jpg"},
+                { "question": "Mi personalidad es administrativa.", "image": "Emprendedor2.jpg"},
+                { "question": "Me gusta discutir sobre política", "image": "Emprendedor3.jpg"},
+                { "question": "Trato de sobresalir en todo lo que hago.", "image": "Emprendedor4.jpg"},
+                { "question": "Me gusta conocer personas influyentes.", "image": "Emprendedor5.jpeg"},
+                { "question": "Busco la manera de hacer siempre buenos negocios.", "image": "Emprendedor6.jpg"},
+                { "question": "Intento desafiar mis conocimientos con nuevos retos.", "image": "Emprendedor7.jpg"},
+                { "question": "Supervisar a los demás para que hagan bien su trabajo.", "image": "Emprendedor8.jpg"},
+                { "question": "Soy una persona proactiva.", "image": "Emprendedor9.jpg"},
+                { "question": "Soy muy flexible a la hora de apoyar a mis compañeros de equipo.", "image": "Emprendedor10.jpg"}
             ]
         },
 
         {
             "category": "Convencional",
             "questions": [
-                "Me gusta trabajar con números.",
-                "Me gusta cumplir las normas y los reglamentos.",
-                "Me gusta tener organizado todo por carpetas en mi ordenador.",
-                "Prefiero hacer listas.",
-                "Me gusta hacer llevar un registro de gastos.",
-                "Resolver problemas aplicando fórmulas o modelos matemáticos.",
-                "Leer los medidores y establecer el uso adecuado de cada servicio.",
-                "Llevar la contabilidad de las demás personas u empresas.",
-                "Organizar fotografías por fecha.",
-                "Prefiero estar seguro(a) que mis emails no tengan errores antes de enviarlos."
+                { "question": "Me gusta trabajar con números.", "image": "Convencional1.jpg"},
+                { "question": "Me gusta cumplir las normas y los reglamentos.", "image": "Convencional2.jpg"},
+                { "question": "Me gusta tener organizado todo por carpetas en mi ordenador.", "image": "Convencional3.png"},
+                { "question": "Prefiero hacer listas.", "image": "Convencional4.jpg"},
+                { "question": "Me gusta hacer llevar un registro de gastos.", "image": "Convencional5.jpg"},
+                { "question": "Resolver problemas aplicando fórmulas o modelos matemáticos.", "image": "Convencional6.jpg"},
+                { "question": "Leer los medidores y establecer el uso adecuado de cada servicio.", "image": "Convencional7.jpg"},
+                { "question": "Llevar la contabilidad de las demás personas u empresas.", "image": "Convencional8.jpg"},
+                { "question": "Organizar fotografías por fecha.", "image": "Convencional9.jpg"},
+                { "question": "Prefiero estar seguro(a) que mis emails no tengan errores antes de enviarlos.", "image": "Convencional10.jpg"}
             ]
         }
 

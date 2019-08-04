@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar *ngIf="currentUser" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid style="height: 100%">
+    <ion-row align-items-center justify-content-center style="height: 100%">
+      <ion-slides>
+        
+        <ion-slide *ngIf="!firstTime">
+          <ion-col col-12>
+            <h1 ion-text color="secondary" text-center>Ya has presentado nuestro test antes!</h1>
+            <ion-icon name="analytics" color="secondary"></ion-icon>
+            <p ion-text color="black" text-center>¿Deseas presentar el test nuevamente?</p>
+          </ion-col>
+        </ion-slide>
+
+        <ion-slide>
+          <ion-col col-12>
+            <h1 ion-text color="secondary" text-center>Test Aptitudinal</h1>
+            <ion-icon name="school" color="secondary"></ion-icon>
+            <p ion-text color="black" text-center>Bienvenido a nuestro test aptitudinal</p>
+            <p ion-text color="black" text-center>Tomate tu tiempo y responde con sinceridad las 60 preguntas del test</p>
+          </ion-col>
+        </ion-slide>
+
+      </ion-slides>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="skip-button" ion-text text-center color="secondary" (click)="next()">{{skipMessage}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

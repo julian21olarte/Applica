@@ -47,7 +47,7 @@ export class LoginPage {
       console.log(user);
       let page = 'HomePage';
       if(user.status <= 1) {
-        alert('Por favor completa tus datos personales...');
+        // alert('Por favor completa tus datos personales...');
         page = 'PersonalDataPage';
       }
       this.navCtrl.push(page);

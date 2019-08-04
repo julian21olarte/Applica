@@ -36,7 +36,7 @@ export class TestResultChartPage {
     this.authProvider.getCurrentUser()
       .subscribe(user => { 
           this.currentUser = user;
-          if(this.currentUser) {
+          if(this.currentUser && this.currentUser.results) {
             this.careers = this.currentUser.results;
             this.loadCharts();
           }

@@ -39,8 +39,8 @@ export class TestPage {
     this.questions = this.test.questions;
 
     this.answers = [
-      {description: 'Totalmente deacuerdo', code: 5},
-      {description: 'Deacuerdo', code: 4},
+      {description: 'Totalmente de acuerdo', code: 5},
+      {description: 'De acuerdo', code: 4},
       {description: 'Ni de acuerdo, ni en desacuerdo (Neutral)', code: 3},
       {description: 'En desacuerdo', code: 2},
       {description: 'Totalmente en desacuerdo', code: 1},
@@ -54,16 +54,48 @@ export class TestPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPage');
+    this.slides.lockSwipeToNext(true);
+    this.slides.lockSwipeToPrev(true);
+
+    // when the slide go to back, go to next
+    // is enabled to return to current slide (not answered yet)
+    this.slides.ionSlidePrevEnd.subscribe(_ => {
+      this.slides.lockSwipeToNext(false);
+      if(this.slides.isBeginning()) {
+        this.slides.lockSwipeToPrev(true);
+      }
+    })
+
+    // when the slide go to next,
+    // if the current slide is not answered yet then the goToNext slide feature is locked
+    this.slides.ionSlideNextEnd.subscribe(_ => {
+      this.slides.lockSwipeToPrev(false);
+      if(!this.slides.isEnd()) {
+        let slideIndex = this.slides.getActiveIndex()
+        if(!this.questions[slideIndex].answer) {
+          this.slides.lockSwipeToNext(true);
+        }
+      }
+    })
   }
 
   public next(index: number) {
-    if(!this.slides.isEnd()) {
-      this.slides.slideTo(index + 1, 500);
-    }
+    setTimeout(() => {
+      if(!this.slides.isEnd()) {
+        this.slides.slideTo(index + 1, 500);
+        this.slides.lockSwipeToNext(true);
+      } else {
+        this.finishTest()
+      }
+    }, 200);
+    this.slides.lockSwipeToNext(false);
   }
 
+  /**
+   * finshTest
+   * function called when all questions are answered
+   */
   public finishTest() {
-
     // validate test before evaluate
     if(this.validateTest()) {
       this.loading = this.loadingCtrl.create({content: 'Cargando'});

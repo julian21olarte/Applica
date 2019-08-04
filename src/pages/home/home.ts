@@ -38,10 +38,10 @@ export class HomePage {
     }
   }
   public goToLogin() {
-    this.navCtrl.push('LoginPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 
   public goToProfile() {
-    this.navCtrl.push('ProfilePage');
+    this.navCtrl.setRoot('ProfilePage');
   }
 }

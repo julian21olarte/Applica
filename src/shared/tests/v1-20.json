@@ -3,32 +3,32 @@
         {
             "category": "Realista",
             "questions": [
-                "Prefiero los trabajos manuales con herramientas.",
-                "Prefiero las actividades físicas.",
-                "Prefiero trabajar fuera de la oficina.",
-                "Me gusta reparar por mi cuenta las cosas que se dañan.",
-                "He usado herramientas eléctricas.",
-                "Manejar un tractor agrícola.",
-                "Me gusta reforzar las leyes o normas.",
-                "Realizo deportes al aire libre.",
-                "Prefiero estar sentado manejando por horas.",
-                "Me gusta la botánica."
+                { "question": "Prefiero los trabajos manuales con herramientas.", "image": "Realista1.jpg"},
+                { "question": "Prefiero las actividades físicas.", "image": "Realista2.jpg"},
+                { "question": "Prefiero trabajar fuera de la oficina.", "image": "Realista3.jpg"},
+                { "question": "Me gusta reparar por mi cuenta las cosas que se dañan.", "image": "Realista4.jpg"},
+                { "question": "He usado herramientas eléctricas.", "image": "Realista5.jpg"},
+                { "question": "Manejar un tractor agrícola.", "image": "Realista6.jpg"},
+                { "question": "Me gusta reforzar las leyes o normas.", "image": "Realista7.jpg"},
+                { "question": "Realizo deportes al aire libre.", "image": "Realista8.jpg"},
+                { "question": "Prefiero estar sentado manejando por horas.", "image": "Realista9.jpg"},
+                { "question": "Me gusta la botánica.", "image": "Realista10.jpg"}
             ]
         },
 
         {
             "category": "Investigador",
             "questions": [
-                "Prefiero los proyectos científicos.",
-                "Me gusta la química.",
-                "Prefiero manejar ideas abstractas y analíticas.",
-                "Me gusta reunir información y analizarla.",
-                "Me considero curioso(a).",
-                "Investigó las causas de los fenómenos naturales.",
-                "Evaluar los resultados finales de un proyecto.",
-                "Estudiar todas las necesidades de las comunas.",
-                "Me gusta estudiar y aprender el comportamiento humano.",
-                "Prefiero ver documentales de ciencia."
+                { "question": "Prefiero los proyectos científicos.", "image": "Investigador1.jpg"},
+                { "question": "Me gusta la química.", "image": "Investigador2.jpg"},
+                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.jpg"},
+                { "question": "Me gusta reunir información y analizarla.", "image": "Investigador4.jpg"},
+                { "question": "Me considero curioso(a).", "image": "Investigador5.jpg"},
+                { "question": "Investigó las causas de los fenómenos naturales.", "image": "Investigador6.jpg"},
+                { "question": "Evaluar los resultados finales de un proyecto.", "image": "Investigador7.jpg"},
+                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.jpg"},
+                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.jpg"},
+                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.jpg"}
             ]
         }
 

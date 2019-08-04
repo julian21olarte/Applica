@@ -24,18 +24,18 @@
           <ion-slide *ngFor="let question of questions; let i = index">
             <h5 class="question-title">{{(i+1)}}. {{question.question}}</h5>
             <br>
+            <ion-avatar item-center>
+              <img class="question-img" src="https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com/o/images%2Ftests%2Fv1%2F{{question.image}}?alt=media">
+            </ion-avatar>
             <ion-list class="answers-list" radio-group [(ngModel)]="question.answer">
-              <!-- <ion-list-header>
-                      {{(i+1)}}. {{question.question}}
-                  </ion-list-header> -->
               <ion-item *ngFor="let answer of answers" text-wrap>
-                <ion-label>{{answer.description}}</ion-label>
-                <ion-radio [value]=answer.code></ion-radio>
+                <ion-label (click)="next(i)">{{answer.description}}</ion-label>
+                <ion-radio (click)="next(i)" [value]=answer.code></ion-radio>
               </ion-item>
             </ion-list>
-            <br>
-            <button *ngIf="(i + 1) != questions.length" ion-button float-center color="primary" (click)="next(i)">Siguiente</button>
-            <button *ngIf="(i + 1) == questions.length" ion-button float-center color="success" (click)="finishTest()">Finalizar</button>
+            <!-- <br> -->
+            <!-- <button *ngIf="(i + 1) != questions.length" ion-button float-center color="primary" (click)="next(i)">Siguiente</button>
+            <button *ngIf="(i + 1) == questions.length" ion-button float-center color="success" (click)="finishTest()">Finalizar</button> -->
           </ion-slide>
         </ion-slides>
       </ion-col>
