@@ -20,8 +20,8 @@ export class HomePage {
 	constructor(public navCtrl: NavController, public authProvider: AuthProvider, public twitterProvider: TwitterProvider, public domSanitizer: DomSanitizer) {
 			this.skipMessage = 'saltar';
 			this.dashboardItems = [
-				{type: 'tweet', name: 'UFPSCUCUTA', query: 'from:@UFPSCUCUTA', account: '@UFPSCUCUTA', tweets: []},
-				{type: 'tweet', name: 'El Espectador', query: 'from:@elespectador', account: '@elespectador', tweets: []},
+				{type: 'tweet', name: 'UFPSCUCUTA', query: 'from:UFPSCUCUTA', account: '@UFPSCUCUTA', tweets: []},
+				{type: 'tweet', name: 'El Espectador', query: 'from:elespectador', account: '@elespectador', tweets: []},
 				{type: 'tweet', name: 'Orientacion Vocacional', query: 'orientacion vocacional', tweets: []},
 				//{type: 'video', name: 'Firebase Video', url: 'https://www.youtube.com/watch?v=3aoxOtMM2rc'}
 			]

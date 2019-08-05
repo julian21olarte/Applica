@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Platform } from 'ionic-angular';
 
 /*
   Generated class for the AuthProvider provider.
@@ -12,10 +13,14 @@ import { Observable } from 'rxjs';
 export class TwitterProvider {
 
   private firebaseFunctionsURL: string;
+  private cordova: string = 'cordova';
   constructor(
     public http: HttpClient,
+    private platform: Platform
     ){
-      this.firebaseFunctionsURL = '/firebaseFunctions';
+      this.firebaseFunctionsURL = !this.platform.is(this.cordova)
+        ? '/firebaseFunctions' // for web with proxy
+        : 'https://us-central1-applica-4886b.cloudfunctions.net'; // for device
   }
 
   public getTweets(query: string, count: number): Observable<any> {
