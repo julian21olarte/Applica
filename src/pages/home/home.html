@@ -3,23 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Inicio</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<!--Onboarding section-->
+<ion-content class="onboarding" pager *ngIf="!currentUser" >
   <ion-grid style="height: 100%">
     <ion-row align-items-center justify-content-center style="height: 100%">
-      <ion-slides pager  (ionSlideDidChange)="slideChanged()">
+      <ion-slides pager (ionSlideDidChange)="slideChanged()">
         <ion-slide>
           <ion-col col-12>
             <h1 ion-text color="secondary" text-center>Bienvenido</h1>
             <ion-icon name="school" color="secondary"></ion-icon>
             <p ion-text color="black" text-center>Con Applica puedes conectar facilmente con universidades de tu ciudad y encontrar la carrera que deseas!</p>
           </ion-col>
-          <!--<ion-col col-12>
-            <button *ngIf="!currentUser" ion-button color="primary" full (click)="goToLogin()">Entrar</button>
-          </ion-col>-->
         </ion-slide>
 
         <ion-slide>
@@ -46,4 +44,45 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-content>
+
+
+<!--Dashboard section-->
+<ion-content pager *ngIf="currentUser">
+  <ion-card *ngIf="currentUser && currentUser.results[0]">
+    <ion-card-header>
+      <h3 ion-text color="primary">Tus resultados</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item text-wrap>
+            <h2 ion-text color="primary">{{currentUser.results[0].name}}</h2>
+            <p>{{currentUser.results[0].description.substring(0, 150) + '...'}}</p>
+            <button ion-button float-right color="secondary" clear (click)='goToResults()'>Ver mas...</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngFor="let item of dashboardItems">
+    <ion-card-header>
+      <h3 ion-text color="primary">{{item.type == 'tweet' ? 'Tweets ' + (item.account ? item.account : item.name) : item.name}}</h3>
+    </ion-card-header>
+    <ion-card-content>
+
+      <!--if item is tweet-->
+      <ion-list *ngIf="item.type == 'tweet'">
+        <ion-spinner color="primary" *ngIf="!item.tweets.length" name="crescent"></ion-spinner>
+        <ion-item *ngFor="let tweet of item.tweets" text-wrap>
+          <ion-avatar item-center>
+            <img width="16px" src="{{tweet.user.profile_image_url}}"> 
+            <b style="line-height:28px; margin-left: 5px; font-size: 14px;">{{tweet.user.name | titlecase}}</b>
+          </ion-avatar>
+          <p class="card-text tweet-text" [innerHTML]="tweet | tweetPipe"></p>
+        </ion-item>
+      </ion-list>
+
+      <!--if item is video-->
+      <iframe *ngIf="item.type == 'video'" width="100%" height="315" [src]="item.url" frameborder="0" allowfullscreen></iframe>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

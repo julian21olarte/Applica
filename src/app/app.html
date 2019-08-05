@@ -14,7 +14,8 @@
 
   <ion-content>
     <ion-list class="menu-list">
-      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('ProfilePage')">Perfil</button>
+      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('HomePage')">Inicio</button>
+      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('ProfilePage')">Mi Perfil</button>
       <button menuClose ion-item (click)="openPage('TestSplashPage')">Test</button>
       <button menuClose *ngIf="!currentUser" ion-item (click)="openPage('LoginPage')">Login</button>
       <button menuClose *ngIf="currentUser && currentUser.results" ion-item (click)="openPage('TestResultPage')">Resultados</button>

@@ -1,5 +1,5 @@
 page-home {
-  ion-content {
+  ion-content.onboarding {
     /*background: #00416A;
     background: -webkit-linear-gradient(to bottom, #E4E5E6, #ABC9ED, #00416A);
     background: linear-gradient(to bottom, #E4E5E6, #ABC9ED, #00416A);*/
@@ -28,6 +28,25 @@ page-home {
 
   .skip-button {
     font-weight: bold;
+  }
+
+  .card .list .item {
+    border-bottom: 1px solid lightgray;
+  }
+
+  ion-spinner {
+    display: block;
+    margin: auto;
+  }
+
+  ion-avatar img {
+    width: 25px !important;
+    height: 25px !important;
+    float: left;
+  }
+
+  p.tweet-text {
+    font-size: 12px;
   }
 }
 

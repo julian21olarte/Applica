@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DbProvider } from './../providers/db';
 import {AuthProvider} from "../providers/auth";
 import {LocationProvider} from "../providers/location";
+import { TwitterProvider } from '../providers/twitter';
 @NgModule({
   declarations: [
     MyApp
@@ -24,7 +26,8 @@ import {LocationProvider} from "../providers/location";
     HttpClientModule,
     IonicModule.forRoot(MyApp, {tabsPlacement:'top'}),
     AngularFireModule.initializeApp(firebaseConfig),
-    SharedModule
+    SharedModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,6 +39,7 @@ import {LocationProvider} from "../providers/location";
     AuthProvider,
     DbProvider,
     LocationProvider,
+    TwitterProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
