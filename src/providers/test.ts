@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Question } from '../shared/interfaces/question.interface';
 import 'rxjs/add/operator/map';
 import { Test, RawTest } from '../shared/interfaces/test.interface';
-import test from "../shared/tests/v1-20.json"; // TODO: change this
+import test from "../shared/tests/v1.json"; // TODO: change this
 
 /*
   Generated class for the TestProvider provider.
@@ -37,6 +37,12 @@ export class TestProvider {
     public getTest(): Test {
         console.log(this.test)
         return this.test;
+    }
+
+    public getShuffleTest(): Test {
+        return <Test> {
+            questions: this.test.questions.sort(() => .5 - Math.random())
+        };
     }
 
     public evaluateTest(test: Array<Question>) {

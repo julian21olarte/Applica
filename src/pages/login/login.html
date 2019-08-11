@@ -20,21 +20,9 @@
         <h3 ion-text text-center color="secondary">Ingresa con tu cuenta</h3>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngFor="let authOption of authOptions">
       <ion-col>
-        <button ion-button full round color="facebook" (click)="loginFacebook()">Facebook</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <button ion-button full round color="google" (click)="loginGoogle()">Google</button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <button ion-button full round color="twitter" (click)="loginTwitter()">Twitter</button>
+        <button ion-button full round color="{{authOption.color}}" (click)="authOption.fn()">{{authOption.name}}</button>
       </ion-col>
     </ion-row>
   </ion-grid>

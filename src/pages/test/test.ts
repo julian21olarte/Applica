@@ -35,7 +35,7 @@ export class TestPage {
     public dbProvider: DbProvider) {
 
     // fill test, answers and questions
-    this.test = this.testProvider.getTest();
+    this.test = this.testProvider.getShuffleTest();
     this.questions = this.test.questions;
 
     this.answers = [

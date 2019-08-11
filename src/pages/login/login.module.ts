@@ -1,3 +1,4 @@
+import { AppAvailability } from '@ionic-native/app-availability';
 import { SharedModule } from './../../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,8 @@ import { LoginPage } from './login';
     HttpClientModule,
     SharedModule
   ],
-  providers: []
+  providers: [
+    AppAvailability
+  ]
 })
 export class LoginPageModule {}

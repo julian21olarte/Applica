@@ -21,6 +21,7 @@
     "@angular/http": "5.2.10",
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
+    "@ionic-native/app-availability": "^4.20.0",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/facebook": "^4.9.0",
     "@ionic-native/geolocation": "^4.9.0",
@@ -32,6 +33,7 @@
     "angularfire2": "^5.0.0-rc.10",
     "chart.js": "^2.7.2",
     "cordova-android": "7.0.0",
+    "cordova-plugin-appavailability": "^0.4.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.2.0",
     "cordova-plugin-geolocation": "^4.0.1",
@@ -76,7 +78,8 @@
       },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-appavailability": {}
     },
     "platforms": [
       "android"

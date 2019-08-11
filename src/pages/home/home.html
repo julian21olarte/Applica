@@ -16,23 +16,23 @@
           <ion-col col-12>
             <h1 ion-text color="secondary" text-center>Bienvenido</h1>
             <ion-icon name="school" color="secondary"></ion-icon>
-            <p ion-text color="black" text-center>Con Applica puedes conectar facilmente con universidades de tu ciudad y encontrar la carrera que deseas!</p>
+            <p ion-text color="black" text-center>Con Applica puedes encontrar la carrera que mejor se adapta a tu personalidad!</p>
           </ion-col>
         </ion-slide>
 
         <ion-slide>
           <ion-col col-12>
-            <h1 ion-text color="secondary" text-center>Encuentra tu carrera!</h1>
+            <h1 ion-text color="secondary" text-center>Descubre tu personalidad!</h1>
             <ion-icon name="analytics" color="secondary"></ion-icon>
-            <p ion-text color="black" text-center>Realiza nuestro test vocacional y encuentra tu carrera ideal!</p>
+            <p ion-text color="black" text-center>Realiza nuestro test vocacional, descubre tu tipo de personalidad y encuentra tu carrera ideal!</p>
           </ion-col>
         </ion-slide>
 
         <ion-slide>
           <ion-col col-12>
-            <h1 ion-text color="secondary" text-center>Elige tu universidad!</h1>
+            <h1 ion-text color="secondary" text-center>Encuentra tu carrera ideal!</h1>
             <ion-icon name="pin" color="secondary"></ion-icon>
-            <p ion-text color="black" text-center>Puedes consultar información de las universidades mas cercanas para poder elegir la que mejor se adapte a tu perfil</p>
+            <p ion-text color="black" text-center>Conoce datos relevantes acerca de la educacion en la UFPS y las carreras universitarias!</p>
           </ion-col>
         </ion-slide>
       </ion-slides>
@@ -57,7 +57,7 @@
       <ion-list>
         <ion-item text-wrap>
             <h2 ion-text color="primary">{{currentUser.results[0].name}}</h2>
-            <p>{{currentUser.results[0].description.substring(0, 150) + '...'}}</p>
+            <p class="result-description">{{currentUser.results[0].description.substring(0, 150) + '...'}}</p>
             <button ion-button float-right color="secondary" clear (click)='goToResults()'>Ver mas...</button>
         </ion-item>
       </ion-list>
