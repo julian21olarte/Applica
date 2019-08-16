@@ -213,7 +213,8 @@ export class AuthProvider {
       name: fireUser.displayName,
       fullname: fireUser.displayName,
       email: fireUser.email,
-      image: fireUser.photoURL
+      image: fireUser.photoURL,
+      phone: fireUser.phoneNumber
     };
     const firestoreUserRef = this.database.doc('users/'+fireUser.uid);
     const firestoreUser = await firestoreUserRef
@@ -235,8 +236,6 @@ export class AuthProvider {
   private loginErrorHandler(errorResponse: any) {
     const email = errorResponse.email;
     const credential = errorResponse.credential;
-    console.log(errorResponse)
-    alert(errorResponse)
     if (errorResponse.code !== 'auth/account-exists-with-different-credential') {
       return null;
     }
@@ -313,6 +312,7 @@ export class AuthProvider {
       localStorage.removeItem('currentUser');
       await this.fireAuth.auth.signOut();
       this.setCurrentUser(null);
+      //window.location.assign('https://accounts.google.com/Logout');
     } catch(error) {
       alert('Error al salir de la aplicacion');
     }

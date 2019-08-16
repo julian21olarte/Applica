@@ -26,7 +26,7 @@ export class LoginPage {
     public platform: Platform) {
   }
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     this.authOptions = [
       {name: 'Facebook', color: 'facebook', fn: () => this.loginFacebook()},
@@ -35,39 +35,50 @@ export class LoginPage {
 
     if(this.platform.is('cordova')) {
       // checking if user have twitter installed
-      this.appAvailability.check('com.twitter.android')
-      .then(
-        (yes: boolean) => {
-          this.authOptions.push({name: 'Twitter', color: 'twitter', fn: () => this.loginTwitter()})
-        },
-      );
+      let haveTwitter: boolean = await this.appAvailability.check('com.twitter.android')
+      if(haveTwitter) {
+        this.authOptions.push({name: 'Twitter', color: 'twitter', fn: () => this.loginTwitter()})
+      }
     }
   }
 
   public async loginFacebook() {
-    const user = await this.authProvider.loginFacebook();
-    this.loginHandler(user);
+    try {
+      const user = await this.authProvider.loginFacebook();
+      this.loginHandler(user);
+    } catch(error) {
+      console.log(error);
+      alert('Error login');
+    }
   }
 
   public async loginTwitter() {
-    const user = await this.authProvider.loginTwitter();
-    this.loginHandler(user);
+    try {
+      const user = await this.authProvider.loginTwitter();
+      this.loginHandler(user);
+    } catch(error) {
+      console.log(error);
+      alert('Error login');
+    }
   }
 
   public async loginGoogle() {
-    const user = await this.authProvider.loginGoogle();
-    this.loginHandler(user);
+    try {
+      const user = await this.authProvider.loginGoogle();
+      this.loginHandler(user);
+    } catch(error) {
+      console.log(error);
+      alert('Error login');
+    }
   }
 
   private loginHandler(user) {
     if(user) {
       console.log(user);
-      let page = 'HomePage';
-      if(user.status <= 1) {
-        // alert('Por favor completa tus datos personales...');
-        page = 'PersonalDataPage';
-      }
-      this.navCtrl.push(page);
+      let page = (user.status <= 1) // status <= 1 means user not already compete the profile data
+        ? 'PersonalDataPage'
+        : 'HomePage';
+      this.navCtrl.setRoot(page);
     } else {
       alert('error en la autenticacion');
     }

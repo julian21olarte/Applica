@@ -25,6 +25,7 @@ export class PersonalDataPage {
 
   ionViewDidLoad() {
     this.authProvider.getCurrentUser()
+      .take(1)
       .subscribe(user => {
         this.currentUser = user;
         if (this.currentUser && this.currentUser.status < 2) {
@@ -34,12 +35,18 @@ export class PersonalDataPage {
   }
 
   public saveData() {
-    if (this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum) {
+    if(this.currentUser.phone.length < 7) {
+      alert('El telefono debe tener al menos 7 digitos')
+    }
+
+    if (this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum && this.currentUser.age) {
       this.currentUser.status = this.currentUser.status >= 2 ? this.currentUser.status : 2;
       if (this.authProvider.updateUserData(this.currentUser)) {
         alert('Datos actualizados correctamente');
-        this.navCtrl.push('ProfilePage');
+        this.navCtrl.setRoot('ProfilePage');
       }
+    } else {
+      alert('Por favor completa todos los datos')
     }
   }
 

@@ -23,6 +23,12 @@
 
 ion-list.menu-list > button {
   background-color: transparent;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ion-list.menu-list ion-icon {
+  color: color($colors, primary);
 }
 
 .result-description {

@@ -14,12 +14,12 @@
 
   <ion-content>
     <ion-list class="menu-list">
-      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('HomePage')">Inicio</button>
-      <button menuClose ion-item *ngIf="currentUser" (click)="openPage('ProfilePage')">Mi Perfil</button>
-      <button menuClose ion-item (click)="openPage('TestSplashPage')">Test</button>
-      <button menuClose *ngIf="!currentUser" ion-item (click)="openPage('LoginPage')">Login</button>
-      <button menuClose *ngIf="currentUser && currentUser.results" ion-item (click)="openPage('TestResultPage')">Resultados</button>
-      <button menuClose *ngIf="currentUser" ion-item (click)="logout()">Salir</button>
+      <button menuClose ion-item no-lines *ngIf="currentUser" (click)="openPage('HomePage')"><ion-icon name="home"></ion-icon> Inicio</button>
+      <button menuClose ion-item no-lines *ngIf="currentUser" (click)="openPage('ProfilePage')"><ion-icon name="person"></ion-icon> Mi Perfil</button>
+      <button menuClose ion-item no-lines (click)="openPage('TestSplashPage')"><ion-icon name="list"></ion-icon> Test</button>
+      <button menuClose *ngIf="!currentUser" ion-item no-lines (click)="openPage('LoginPage')"><ion-icon name="log-in"></ion-icon> Login</button>
+      <button menuClose *ngIf="currentUser && currentUser.results" ion-item no-lines (click)="openPage('TestResultPage')"><ion-icon name="stats"></ion-icon> Resultados</button>
+      <button menuClose *ngIf="currentUser" ion-item no-lines (click)="logout()"><ion-icon name="log-out"></ion-icon> Salir</button>
     </ion-list>
   </ion-content>
 

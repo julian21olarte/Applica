@@ -42,7 +42,12 @@ export class MyApp {
   }
 
   public async logout() {
-    await this.authProvider.logout();
-    this.nav.setRoot('LoginPage');
+    try {
+      await this.authProvider.logout();
+      this.nav.setRoot('LoginPage');
+    } catch(error) {
+      console.log(error)
+      alert('Error saliendo de la aplicacion')
+    }
   }
 }

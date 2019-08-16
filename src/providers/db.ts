@@ -19,20 +19,22 @@ export class DbProvider {
       this.database = firebase.firestore();
   }
 
-  public countResults(results: Array<any>) {
+  public async countResults(results: Array<any>) {
     const higher = results.sort((a, b) => b.match - a.match)[0];
-    this.database
+    try {
+      let snapshot = await this.database
       .collection('typologies')
       .where('name', '==', higher.name)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          let item = doc.data();
-          let countResult = item.countResult || 0;
-          item.countResult = countResult + 1;
-          doc.ref.set(item)
-        })
+      .get();
+
+      snapshot.forEach(doc => {
+        let item = doc.data();
+        let countResult = item.countResult || 0;
+        item.countResult = countResult + 1;
+        doc.ref.set(item)
       })
-      .catch(error => console.log(error));
+    } catch(error) {
+      console.log(error)
+    }
   }
 }
