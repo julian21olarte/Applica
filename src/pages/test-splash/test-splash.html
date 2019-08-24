@@ -1,9 +1,14 @@
 <ion-header>
   <ion-navbar *ngIf="currentUser" color="primary">
-    <button ion-button menuToggle>
+    <!-- <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Test</ion-title>
+    </button> -->
+    <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
+      <ion-title>Test</ion-title>
+      <ion-avatar menuToggle item-start class="avatar-header">
+        <img src="{{currentUser.image}}">
+      </ion-avatar>
+    </ion-chip>
   </ion-navbar>
 </ion-header>
 

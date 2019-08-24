@@ -21,14 +21,14 @@
             "questions": [
                 { "question": "Prefiero los proyectos científicos.", "image": "Investigador1.jpg"},
                 { "question": "Me gusta la química.", "image": "Investigador2.jpg"},
-                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.jpg"},
+                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.png"},
                 { "question": "Me gusta reunir información y analizarla.", "image": "Investigador4.jpg"},
-                { "question": "Me considero curioso(a).", "image": "Investigador5.jpg"},
+                { "question": "Me considero curioso(a).", "image": "Investigador5.png"},
                 { "question": "Investigó las causas de los fenómenos naturales.", "image": "Investigador6.jpg"},
                 { "question": "Evaluar los resultados finales de un proyecto.", "image": "Investigador7.jpg"},
-                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.jpg"},
-                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.jpg"},
-                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.jpg"}
+                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.png"},
+                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.png"},
+                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.png"}
             ]
         }
 

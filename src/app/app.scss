@@ -16,9 +16,21 @@
 // automatically applied to the <body> element in the app.
 
 .avatars img{
-  height: 68px !important;
-  width: 68px !important;
-  margin: auto auto 15px;
+  height: 56px !important;
+  width: 56px !important;
+  margin: auto 0 15px;
+}
+
+.avatar-header {
+  margin-right: 15px;
+}
+.avatar-header img{
+  height: 40px !important;
+  width: 40px !important;
+}
+
+.chip-header {
+  width: 100%;
 }
 
 ion-list.menu-list > button {
@@ -34,4 +46,9 @@ ion-list.menu-list ion-icon {
 .result-description {
   text-align: justify;
   text-justify: inter-word;
+}
+
+.skip-button {
+  font-weight: bold;
+  font-size: 1.3em;
 }

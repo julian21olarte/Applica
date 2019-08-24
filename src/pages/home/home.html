@@ -39,14 +39,19 @@
 
 
 <ion-header>
-  <ion-navbar *ngIf="currentUser" color="primary">
-    <button ion-button menuToggle>
+  <ion-navbar class="navbar-header" *ngIf="currentUser" color="primary">
+    <!-- <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Dashboard</ion-title>
+    </button> -->
+    <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
+      <ion-avatar menuToggle item-start class="avatar-header">
+        <img src="{{currentUser.image}}">
+      </ion-avatar>
+      <ion-title>Noticias</ion-title>
+    </ion-chip>
   </ion-navbar>
 </ion-header>
-<!--Dashboard section-->
+<!--Noticias section-->
 <ion-content class="dashboard" pager *ngIf="currentUser">
   <ion-card *ngIf="currentUser && currentUser.results && currentUser.results[0]">
     <ion-card-header>

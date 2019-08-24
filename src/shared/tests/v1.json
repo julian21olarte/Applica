@@ -21,14 +21,14 @@
             "questions": [
                 { "question": "Prefiero los proyectos científicos.", "image": "Investigador1.jpg"},
                 { "question": "Me gusta la química.", "image": "Investigador2.jpg"},
-                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.jpg"},
+                { "question": "Prefiero manejar ideas abstractas y analíticas.", "image": "Investigador3.png"},
                 { "question": "Me gusta reunir información y analizarla.", "image": "Investigador4.jpg"},
-                { "question": "Me considero curioso(a).", "image": "Investigador5.jpg"},
+                { "question": "Me considero curioso(a).", "image": "Investigador5.png"},
                 { "question": "Investigó las causas de los fenómenos naturales.", "image": "Investigador6.jpg"},
                 { "question": "Evaluar los resultados finales de un proyecto.", "image": "Investigador7.jpg"},
-                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.jpg"},
-                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.jpg"},
-                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.jpg"}
+                { "question": "Estudiar todas las necesidades de las comunas.", "image": "Investigador8.png"},
+                { "question": "Me gusta estudiar y aprender el comportamiento humano.", "image": "Investigador9.png"},
+                { "question": "Prefiero ver documentales de ciencia.", "image": "Investigador10.png"}
             ]
         },
 
@@ -37,13 +37,13 @@
             "questions": [
                 { "question": "Me gusta expresarme por medio del arte.", "image": "Artistico1.jpg"},
                 { "question": "Me gusta hacer bosquejos o dibujos.", "image": "Artistico2.jpg"},
-                { "question": "Me gusta tomar cursos de arte.", "image": "Artistico3.jpg"},
+                { "question": "Me gusta tomar cursos de arte.", "image": "Artistico3.png"},
                 { "question": "Fotografío a las personas o las escenas naturales.", "image": "Artistico4.jpg"},
                 { "question": "Me gusta diseñar edificios.", "image": "Artistico5.jpg"},
                 { "question": "Me gusta tocar instrumentos musicales.", "image": "Artistico6.jpg"},
                 { "question": "Me gusta dirigir cortometrajes u obras de teatro.", "image": "Artistico7.jpg"},
                 { "question": "Prefiero estar al día con las noticias y todo lo que sucede.", "image": "Artistico8.jpg"},
-                { "question": "Prefiero ser modelo en shows de moda.", "image": "Artistico9.png"},
+                { "question": "Prefiero ser modelo en shows de moda.", "image": "Artistico9.jpg"},
                 { "question": "Escribo todo lo que me sucede en un cuaderno o diario.", "image": "Artistico10.jpg"}
             ]
         },
@@ -67,14 +67,14 @@
         {
             "category": "Emprendedor",
             "questions": [
-                { "question": "Tengo liderazgo.", "image": "Emprendedor1.jpg"},
+                { "question": "Tengo liderazgo.", "image": "Emprendedor1.png"},
                 { "question": "Mi personalidad es administrativa.", "image": "Emprendedor2.jpg"},
                 { "question": "Me gusta discutir sobre política", "image": "Emprendedor3.jpg"},
                 { "question": "Trato de sobresalir en todo lo que hago.", "image": "Emprendedor4.jpg"},
-                { "question": "Me gusta conocer personas influyentes.", "image": "Emprendedor5.jpeg"},
-                { "question": "Busco la manera de hacer siempre buenos negocios.", "image": "Emprendedor6.jpg"},
+                { "question": "Me gusta conocer personas influyentes.", "image": "Emprendedor5.jpg"},
+                { "question": "Busco la manera de hacer siempre buenos negocios.", "image": "Emprendedor6.png"},
                 { "question": "Intento desafiar mis conocimientos con nuevos retos.", "image": "Emprendedor7.jpg"},
-                { "question": "Supervisar a los demás para que hagan bien su trabajo.", "image": "Emprendedor8.jpg"},
+                { "question": "Supervisar a los demás para que hagan bien su trabajo.", "image": "Emprendedor8.png"},
                 { "question": "Soy una persona proactiva.", "image": "Emprendedor9.jpg"},
                 { "question": "Soy muy flexible a la hora de apoyar a mis compañeros de equipo.", "image": "Emprendedor10.jpg"}
             ]
@@ -83,13 +83,13 @@
         {
             "category": "Convencional",
             "questions": [
-                { "question": "Me gusta trabajar con números.", "image": "Convencional1.jpg"},
+                { "question": "Me gusta trabajar con números.", "image": "Convencional1.png"},
                 { "question": "Me gusta cumplir las normas y los reglamentos.", "image": "Convencional2.jpg"},
-                { "question": "Me gusta tener organizado todo por carpetas en mi ordenador.", "image": "Convencional3.png"},
+                { "question": "Me gusta tener organizado todo por carpetas en mi ordenador.", "image": "Convencional3.jpg"},
                 { "question": "Prefiero hacer listas.", "image": "Convencional4.jpg"},
                 { "question": "Me gusta hacer llevar un registro de gastos.", "image": "Convencional5.jpg"},
                 { "question": "Resolver problemas aplicando fórmulas o modelos matemáticos.", "image": "Convencional6.jpg"},
-                { "question": "Leer los medidores y establecer el uso adecuado de cada servicio.", "image": "Convencional7.jpg"},
+                { "question": "Leer los medidores y establecer el uso adecuado de cada servicio.", "image": "Convencional7.png"},
                 { "question": "Llevar la contabilidad de las demás personas u empresas.", "image": "Convencional8.jpg"},
                 { "question": "Organizar fotografías por fecha.", "image": "Convencional9.jpg"},
                 { "question": "Prefiero estar seguro(a) que mis emails no tengan errores antes de enviarlos.", "image": "Convencional10.jpg"}
