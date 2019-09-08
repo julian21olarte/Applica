@@ -112,6 +112,7 @@ export class TestPage {
           this.currentUser.results = data;
           this.authProvider.updateUserData(this.currentUser);
           this.dbProvider.countResults(this.currentUser.results);
+          this.dbProvider.addPresentation(this.testProvider.createPresentationByUser(this.currentUser));
 
           return this.navCtrl.push('TestResultSplashPage');
         } else {

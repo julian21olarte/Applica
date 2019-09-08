@@ -1,10 +1,13 @@
+import { TestPresentation } from './../shared/interfaces/test.interface';
+import { Platform } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Question } from '../shared/interfaces/question.interface';
 import 'rxjs/add/operator/map';
 import { Test, RawTest } from '../shared/interfaces/test.interface';
-import test from "../shared/tests/v1.json"; // TODO: change this
+import { User } from 'src/shared/interfaces/user.interface';
+//import test from "../shared/tests/v1.json"; // TODO: change this
 
 /*
   Generated class for the TestProvider provider.
@@ -15,23 +18,39 @@ import test from "../shared/tests/v1.json"; // TODO: change this
 export class TestProvider {
 
     private test: Test;
-    constructor(public http: HttpClient, public database: AngularFirestore) {
+    constructor(public http: HttpClient, public database: AngularFirestore, public platform: Platform) {
         console.log('Hello TestProvider Provider');
+        this.loadTest();
+    }
+
+    public async loadTest() {
         let rawTest = <RawTest> { questions: [] }
         this.test = <Test> { questions: [] }
 
-        rawTest = test;
+        let url = !this.platform.is('CORDOVA')
+            ? '/tests' // for web with proxy
+            : 'https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com'; // for device
 
-        rawTest.questions.forEach(item => {
-            item.questions.forEach(question => {
-                let newQuestion = <Question> {
-                    category: item.category,
-                    question: question.question,
-                    image: question.image
-                }
-                this.test.questions.push(newQuestion)
+        try {
+            let response =  await fetch(url + '/o/tests%2Ftest.json?alt=media')
+            let test = await response.json()
+            console.log(test)
+
+            rawTest = test;
+            rawTest.questions.forEach(item => {
+                item.questions.forEach(question => {
+                    let newQuestion = <Question> {
+                        category: item.category,
+                        question: question.question,
+                        image: question.image
+                    }
+                    this.test.questions.push(newQuestion)
+                })
             })
-        })
+        } catch(error) {
+            console.log(error)
+        }
+        
     }
 
     public getTest(): Test {
@@ -86,6 +105,15 @@ export class TestProvider {
 
     private getMatchCareers(name: string, values: Map<string, number>): number {
         return values.get(name) || 0
+    }
+
+    public createPresentationByUser(user: User): TestPresentation {
+        let presentation = <TestPresentation> {
+            uid: user.uid,
+            date: new Date(),
+            results: user.results
+        }
+        return presentation;
     }
 
 }

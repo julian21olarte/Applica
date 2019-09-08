@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
     </button> -->
     <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
-      <ion-title>Resultados</ion-title>
+        <ion-title>Resultados {{navParams.data.presentation ? (navParams.data.presentation.date | amCalendar) : ''}}</ion-title>
       <ion-avatar menuToggle item-start class="avatar-header">
         <img src="{{currentUser.image}}">
       </ion-avatar>

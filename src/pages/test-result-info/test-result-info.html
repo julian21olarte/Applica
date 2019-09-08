@@ -11,7 +11,7 @@
       <ion-icon name="menu"></ion-icon>
     </button> -->
     <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
-      <ion-title>Resultados</ion-title>
+        <ion-title>Resultados {{navParams.data.presentation ? (navParams.data.presentation.date | amCalendar) : ''}}</ion-title>
       <ion-avatar menuToggle item-start class="avatar-header">
         <img src="{{currentUser.image}}">
       </ion-avatar>
@@ -25,19 +25,19 @@
   <ion-grid style="height: 100%">
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col>
-        <div #resultsContainer *ngIf="currentUser && currentUser.results">
-          <h1 ion-text color="primary" style="font-size: 2.2em;" text-center>{{currentUser.results[0].name}}
+        <div #resultsContainer *ngIf="currentUser && results">
+          <h1 ion-text color="primary" style="font-size: 2.2em;" text-center>{{results[0].name}}
             <ion-icon item-start name="trophy" color="gold"></ion-icon>
           </h1>
-          <p class="result-description">{{currentUser.results[0].description}}</p>
-          <h3 ion-text color="primary" text-center>{{currentUser.results[1].name}}
+          <p class="result-description">{{results[0].description}}</p>
+          <h3 ion-text color="primary" text-center>{{results[1].name}}
             <ion-icon item-start name="trophy" color="silver"></ion-icon>
           </h3>
-          <p class="result-description">{{currentUser.results[1].description}}</p>
-          <h5 ion-text color="primary" text-center>{{currentUser.results[2].name}}
+          <p class="result-description">{{results[1].description}}</p>
+          <h5 ion-text color="primary" text-center>{{results[2].name}}
             <ion-icon item-start name="trophy" color="copper"></ion-icon>
           </h5>
-          <p class="result-description">{{currentUser.results[2].description}}</p>
+          <p class="result-description">{{results[2].description}}</p>
         </div>
       </ion-col>
     </ion-row>

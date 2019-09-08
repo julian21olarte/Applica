@@ -6,3 +6,9 @@ export interface Test {
 export interface RawTest {
   questions: Array<RawQuestion>;
 }
+
+export interface TestPresentation {
+  uid: string;
+  results?: Array<any>;
+  date: Date;
+}

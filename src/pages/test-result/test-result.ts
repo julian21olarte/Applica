@@ -20,10 +20,13 @@ export class TestResultPage {
   public tab1: any;
   public tab2: any;
   public tab3: any;
+  public tabParams: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams);
     this.tab1 = 'TestResultInfo';
     this.tab2 = 'TestResultChart';
     this.tab3 = 'TestResultCareers';
+    this.tabParams = navParams;
   }
 
   ionViewDidLoad() {

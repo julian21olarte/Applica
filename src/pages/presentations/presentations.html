@@ -11,7 +11,7 @@
         <ion-icon name="menu"></ion-icon>
       </button> -->
       <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
-        <ion-title>Resultados {{navParams.data.presentation ? (navParams.data.presentation.date | amCalendar) : ''}}</ion-title>
+        <ion-title>Mis Tests</ion-title>
         <ion-avatar menuToggle item-start class="avatar-header">
           <img src="{{currentUser.image}}">
         </ion-avatar>
@@ -22,14 +22,16 @@
 
 
 <ion-content>
+  <h1 ion-text color="primary" text-center>
+    Mis tests
+  </h1>
   <ion-list>
-    <ion-item *ngFor="let p of results" text-wrap>
-      <h1 ion-text color="primary" style="font-size: 2.2em;" text-center>
-        {{p.name}}
-      </h1>
+    <ion-item *ngFor="let p of presentations" text-wrap>
       <ion-list>
-        <ion-item text-wrap *ngFor="let career of p.careers">
-          {{career}}
+        <ion-item text-wrap>
+           <h2 ion-text color="primary">Resultado: {{p.results[0].name}}</h2>
+          <p class="result-description">{{p.date | amTimeAgo}}</p>
+          <button ion-button float-right color="secondary" clear (click)='goToResult(p)'>Ver mas...</button>
         </ion-item>
       </ion-list>
     </ion-item>

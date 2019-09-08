@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TestResultInfoPage } from './test-result-info';
@@ -8,6 +9,7 @@ import { TestResultInfoPage } from './test-result-info';
   ],
   imports: [
     IonicPageModule.forChild(TestResultInfoPage),
+    MomentModule
   ],
 })
 export class TestResultInfoPageModule {}

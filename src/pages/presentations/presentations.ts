@@ -1,3 +1,5 @@
+import { DbProvider } from './../../providers/db';
+import { TestPresentation } from './../../shared/interfaces/test.interface';
 import { AuthProvider } from './../../providers/auth';
 import {LocationProvider} from "../../providers/location";
 import { Component } from '@angular/core';
@@ -13,34 +15,32 @@ import { User } from '../../shared/interfaces/user.interface';
  */
 
 @IonicPage({
-  name: 'TestResultCareers'
+  name: 'PresentationsPage'
 })
 @Component({
-  selector: 'page-test-result-careers',
-  templateUrl: 'test-result-careers.html',
+  selector: 'page-presentations',
+  templateUrl: 'presentations.html',
 })
-export class TestResultCareersPage {
+export class PresentationsPage {
 
   public loading: any;
   private currentUser: User;
-  public results: Array<string>;
+  public presentations: Array<TestPresentation>;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public locationProvider: LocationProvider,
     public authProvider: AuthProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public database: DbProvider) {
   }
 
     ionViewWillEnter() {
       this.authProvider.getCurrentUser()
       .subscribe(user => {
           this.currentUser = user;
+          console.log(this.currentUser)
           if(this.currentUser) {
-            if(this.navParams.data.presentation) {
-              this.results = this.navParams.data.presentation.results;
-            } else {
-              this.results = this.currentUser.results;
-            }
+            this.loadPresentations(this.currentUser.uid);
           }
       });
   }
@@ -49,6 +49,15 @@ export class TestResultCareersPage {
       this.currentUser.status = 4;
       this.authProvider.updateUserData(this.currentUser);
     }
+  }
+
+  private async loadPresentations(uid: string) {
+    this.presentations = await this.database.getUserpresentations(uid);
+    console.log(this.presentations)
+  }
+
+  public goToResult(presentation: TestPresentation) {
+    this.navCtrl.push('TestResultPage', {presentation});
   }
 
 }

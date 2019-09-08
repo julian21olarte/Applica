@@ -19,10 +19,18 @@ import { User } from '../../shared/interfaces/user.interface';
 })
 export class TestResultInfoPage {
   public currentUser: User;
+  public results: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
     this.authProvider.getCurrentUser()
     .subscribe(user => {
       this.currentUser = user;
+      if(this.currentUser && this.currentUser.results) {
+        if(this.navParams.data.presentation) {
+          this.results = this.navParams.data.presentation.results;
+        } else {
+          this.results = this.currentUser.results;
+        }
+      }
     });
   }
 

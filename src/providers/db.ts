@@ -1,3 +1,4 @@
+import { TestPresentation } from './../shared/interfaces/test.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
@@ -33,6 +34,38 @@ export class DbProvider {
         item.countResult = countResult + 1;
         doc.ref.set(item)
       })
+    } catch(error) {
+      console.log(error)
+    }
+  }
+
+  public async getUserpresentations(uid: string): Promise<Array<TestPresentation>> {
+    let presentations: Array<TestPresentation> = [];
+    try {
+      let snapPresentations = await this.database
+      .collection('test_presentations')
+      .where('uid', '==', uid)
+      .get();
+
+      presentations = snapPresentations.docs.map((doc) => {
+        let item = doc.data();
+        return <TestPresentation> {
+          date: item.date.toDate(),
+          uid: item.uid,
+          results: item.results
+        };
+      });
+      presentations = presentations.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+    } catch(error) { console.log(error) }
+    return presentations;
+  }
+
+  public async addPresentation(presentation: TestPresentation) {
+    try {
+      this.database
+        .collection('test_presentations').add(presentation);
+
     } catch(error) {
       console.log(error)
     }

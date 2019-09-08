@@ -27,8 +27,9 @@ export class TestResultChartPage {
   public pieChart: any;
   //public radarChart: any;
   public currentUser: User;
-  public careers: Array<any>;
+  public results: Array<any>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
+    
   }
 
   ionViewDidLoad() {
@@ -37,24 +38,28 @@ export class TestResultChartPage {
       .subscribe(user => { 
           this.currentUser = user;
           if(this.currentUser && this.currentUser.results) {
-            this.careers = this.currentUser.results;
+            if(this.navParams.data.presentation) {
+              this.results = this.navParams.data.presentation.results;
+            } else {
+              this.results = this.currentUser.results;
+            }
             this.loadCharts();
           }
       });
   }
 
   private loadCharts() {
-    let total = this.careers
+    let total = this.results
         .map(career => career.match)
         .reduce((a, b) => a + b);
 
     // reused chart data, options
     let chartFields = {
       data: {
-        labels: this.careers.map(career => career.name),
+        labels: this.results.map(career => career.name),
         datasets: [{
             label: 'Personalidades',
-            data: this.careers.map(career => ((career.match * 100) / total).toFixed(1)),
+            data: this.results.map(career => ((career.match * 100) / total).toFixed(1)),
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(75, 192, 192, 0.2)',

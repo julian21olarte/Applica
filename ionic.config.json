@@ -8,6 +8,10 @@
     {
       "path":"/firebaseFunctions",
       "proxyUrl": "https://us-central1-applica-4886b.cloudfunctions.net"
+    },
+    {
+      "path":"/tests",
+      "proxyUrl": "https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com"
     }
   ]
 }

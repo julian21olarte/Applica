@@ -49,6 +49,21 @@
     </ion-card-content>
   </ion-card>
 
+  <ion-card *ngIf="currentUser && this.presentations.length">
+    <ion-card-header>
+      <h3 ion-text color="primary">Mis Tests</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item text-wrap>
+            <p ion-text>Haz presentado actualmente {{presentations.length + ' ' + (presentations.length == 1 ? 'vez' : 'veces')}} nuestro test...</p>
+            <p ion-text>Ultima vez: {{presentations[0].date | amCalendar}}</p>
+            <button ion-button float-right color="secondary" clear (click)='goToPresentations()'>Ver mas...</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngIf="currentUser">
     <ion-card-header>
       <h3 ion-text color="primary">Avance</h3>
