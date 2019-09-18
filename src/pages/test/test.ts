@@ -56,39 +56,16 @@ export class TestPage {
     console.log('ionViewDidLoad TestPage');
     this.slides.lockSwipeToNext(true);
     this.slides.lockSwipeToPrev(true);
-
-    // when the slide go to back, go to next
-    // is enabled to return to current slide (not answered yet)
-    this.slides.ionSlidePrevEnd.subscribe(_ => {
-      this.slides.lockSwipeToNext(false);
-      if(this.slides.isBeginning()) {
-        this.slides.lockSwipeToPrev(true);
-      }
-    })
-
-    // when the slide go to next,
-    // if the current slide is not answered yet then the goToNext slide feature is locked
-    this.slides.ionSlideNextEnd.subscribe(_ => {
-      this.slides.lockSwipeToPrev(false);
-      if(!this.slides.isEnd()) {
-        let slideIndex = this.slides.getActiveIndex()
-        if(!this.questions[slideIndex].answer) {
-          this.slides.lockSwipeToNext(true);
-        }
-      }
-    })
   }
 
   public next(index: number) {
-    setTimeout(() => {
-      if(!this.slides.isEnd()) {
-        this.slides.slideTo(index + 1, 500);
-        this.slides.lockSwipeToNext(true);
-      } else {
-        this.finishTest()
-      }
-    }, 200);
-    this.slides.lockSwipeToNext(false);
+    if(!this.slides.isEnd()) {
+      this.slides.lockSwipeToNext(false);
+      this.slides.slideTo(index + 1, 800);
+      this.slides.lockSwipeToNext(true);
+    } else {
+      this.finishTest()
+    }
   }
 
   /**

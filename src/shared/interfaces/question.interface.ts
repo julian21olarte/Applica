@@ -3,6 +3,7 @@ export interface Question {
   question: string;
   image: string;
   answer?: number;
+  index?: number
 }
 
 export interface RawQuestion {

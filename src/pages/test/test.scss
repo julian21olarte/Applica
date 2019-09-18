@@ -4,10 +4,15 @@ page-test {
     color: black
   }
   h5.question-title {
+    margin-top: 15px;
   }
 
   .question-img{
     width: 250px !important;
     margin: auto auto 15px;
+  }
+
+  ion-slide.swiper-slide {
+    align-items: flex-start;
   }
 }

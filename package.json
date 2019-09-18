@@ -37,6 +37,7 @@
     "cordova-plugin-appavailability": "^0.4.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.2.0",
+    "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googleplus": "^5.3.0",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
@@ -81,7 +82,8 @@
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
       },
-      "cordova-plugin-appavailability": {}
+      "cordova-plugin-appavailability": {},
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android"
