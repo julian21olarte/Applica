@@ -1,0 +1,52 @@
+{
+    "questions":[
+        {
+            "category": "Realista",
+            "questions": [
+                { "question": "Me gusta usar herramientas que faciliten mis tareas.", "image": "Realista1.jpg"},
+                { "question": "Me gusta más leer que hacer deportes.", "image": "Realista2.jpg"}
+            ]
+        },
+
+        {
+            "category": "Investigador",
+            "questions": [
+                { "question": "Me gusta formular preguntas y hacer experimentos.", "image": "Investigador1.jpg"},
+                { "question": "Me gusta usar microscopios y manipular mezclas químicas.", "image": "Investigador2.jpg"}
+            ]
+        },
+
+        {
+            "category": "Artístico",
+            "questions": [
+                { "question": "Me gusta expresarme por medio del arte.", "image": "Artistico1.jpg"},
+                { "question": "Me gusta hacer bosquejos o dibujos artísticos.", "image": "Artistico2.jpg"}
+            ]
+        },
+
+        {
+            "category": "Social",
+            "questions": [
+                { "question": "Me gusta escribir cartas.", "image": "Social1.jpg"},
+                { "question": "Me gusta leer artículos psicológicos.", "image": "Social2.jpg"}
+            ]
+        },
+
+        {
+            "category": "Emprendedor",
+            "questions": [
+                { "question": "Me gusta proponerme voluntariamente para liderar actividades.", "image": "Emprendedor1.png"},
+                { "question": "Mi personalidad es organizada.", "image": "Emprendedor2.jpg"}
+            ]
+        },
+
+        {
+            "category": "Convencional",
+            "questions": [
+                { "question": "Me gusta hacer cálculos mentales y abordar retos matemáticos.", "image": "Convencional1.png"},
+                { "question": "Me gusta cumplir las normas y los reglamentos.", "image": "Convencional2.jpg"}
+            ]
+        }
+
+    ]
+}
