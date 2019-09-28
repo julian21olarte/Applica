@@ -20,6 +20,7 @@ export class RegisterPage {
 
   public email: string;
   public password: string;
+  public isLogin: boolean;
   public authOptions: Array<any>;
   constructor(
     public navCtrl: NavController,
@@ -31,13 +32,14 @@ export class RegisterPage {
     public loading: LoadingController) {
       this.email = '';
       this.password = '';
+      this.isLogin = this.navParams.get('isLogin')
   }
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  public register() {
+  public handleLogin() {
       if( !this.email || !this.password) {
         this.createToast('Datos invalidos!');
         return false;
@@ -48,24 +50,31 @@ export class RegisterPage {
       });
       load.present();
       load.onDidDismiss(() => {
-        this.authProvider.signup(this.email, this.password)
-        .then(response => {
-          this.authProvider.emailLogin(this.email, this.password)
-          .then(user => {
-            this.loginHandler(user);
+        if(this.isLogin) {
+          this.login()
+        } else {
+          this.authProvider.signup(this.email, this.password)
+          .then(response => {
+            return this.login();
           })
           .catch(err => {
             this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
             return false;
           });
-        })
-        .catch(err => {
-          this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
-          return false;
-        });
+        }
       });
   }
 
+  private login() {
+    this.authProvider.emailLogin(this.email, this.password)
+    .then(user => {
+      this.loginHandler(user);
+    })
+    .catch(err => {
+      this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
+      return false;
+    });
+  }
   private createToast(msg: string) {
     this.toastCtrl.create({
       message: msg,

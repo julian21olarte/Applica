@@ -16,7 +16,8 @@
 <ion-content>
   <ion-row text-center align-items-center justify-content-center>
     <ion-col col-12 text-center>
-      <h1 ion-text color="secondary" text-center>Ingresa tus datos para crear una cuenta nueva</h1>
+      <h1 *ngIf="!isLogin" ion-text color="secondary" text-center>Ingresa tus datos para crear una cuenta nueva</h1>
+      <h1 *ngIf="isLogin" ion-text color="secondary" text-center>Ingresa tu email y contraseña</h1>
       <ion-icon name="contact" color="secondary"></ion-icon>
     </ion-col>
   </ion-row>
@@ -34,7 +35,8 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <button ion-button color="primary" full (click)="register()">Registrar</button>
+          <button *ngIf="isLogin" ion-button color="primary" full (click)="handleLogin()">Entrar</button>
+          <button *ngIf="!isLogin" ion-button color="primary" full (click)="handleLogin()">Registrar</button>
         </ion-col>
       </ion-row>
     </ion-grid>

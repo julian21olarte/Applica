@@ -41,7 +41,8 @@ export class LoginPage {
       }
     }
 
-    this.authOptions.push({name: 'Registrarse', color: 'primary', fn: () => this.emailLogin()})
+    this.authOptions.push({name: 'Entrar Email/Contraseña', color: 'primary', fn: () => this.emailLogin()})
+    this.authOptions.push({name: 'Registrarse', color: 'primary', fn: () => this.register()})
   }
 
   public async loginFacebook() {
@@ -74,15 +75,11 @@ export class LoginPage {
     }
   }
 
-  public async emailLogin() {
-    // try {
-    //   const user = await this.authProvider.loginGoogle();
-    //   this.loginHandler(user);
-    // } catch(error) {
-    //   console.log(error);
-    //   alert('Error login');
-    // }
+  public async register() {
     this.navCtrl.setRoot("RegisterPage");
+  }
+  public async emailLogin() {
+    this.navCtrl.setRoot("RegisterPage", {isLogin: true});
   }
 
   private loginHandler(user) {
