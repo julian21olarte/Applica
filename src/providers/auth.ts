@@ -27,6 +27,7 @@ export class AuthProvider {
   public currentUser: User;
   public currentUserObservable: BehaviorSubject<any>;
   private CORDOVA: string = 'cordova';
+  private DEFAULT_IMAGE_URL: string = 'https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com/o/images%2Fapplica-icon.png?alt=media';
   constructor(
     public http: HttpClient,
     private fireAuth: AngularFireAuth,
@@ -213,7 +214,7 @@ export class AuthProvider {
       name: fireUser.displayName,
       fullname: fireUser.displayName,
       email: fireUser.email,
-      image: fireUser.photoURL,
+      image: fireUser.photoURL ? fireUser.photoURL : this.DEFAULT_IMAGE_URL,
       phone: fireUser.phoneNumber
     };
     const firestoreUserRef = this.database.doc('users/'+fireUser.uid);
@@ -226,6 +227,7 @@ export class AuthProvider {
       ? this.currentUser = firestoreUser as User
       : firestoreUserRef.set(this.currentUser);
     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    console.log(this.currentUser)
     return this.currentUser;
   }
 
@@ -283,6 +285,29 @@ export class AuthProvider {
     } else {
       alert('No existen mas proveedores de autenticacion.');
     }
+  }
+
+  //signup new user
+  public signup(email: string, password: string): any {
+    return this.fireAuth
+      .auth
+      .createUserWithEmailAndPassword(email, password); 
+  }
+
+  //login
+  public async emailLogin(email: string, password: string) {
+    try {
+      console.log(email);
+      console.log(password);
+      await this.fireAuth
+        .auth
+        .signInWithEmailAndPassword(email, password);
+      const user = await this.loginUser();
+      this.setCurrentUser(user);
+      return user;
+    } catch (error) {
+      return this.loginErrorHandler(error);
+    }  
   }
   
   /**

@@ -34,28 +34,36 @@ export class TestPage {
     public authProvider: AuthProvider,
     public dbProvider: DbProvider) {
 
-    // fill test, answers and questions
-    this.test = this.testProvider.getShuffleTest();
-    this.questions = this.test.questions;
-
-    this.answers = [
-      {description: 'Totalmente de acuerdo', code: 5},
-      {description: 'De acuerdo', code: 4},
-      {description: 'Ni de acuerdo, ni en desacuerdo (Neutral)', code: 3},
-      {description: 'En desacuerdo', code: 2},
-      {description: 'Totalmente en desacuerdo', code: 1},
-    ];
-    
-    this.authProvider.getCurrentUser()
+    this.authProvider.getCurrentUser().take(1)
     .subscribe(user => {
       this.currentUser = user;
+      if(this.currentUser) {
+        if(this.currentUser.status < 2) {
+          return this.navCtrl.setRoot('PersonalDataPage');
+        } else {
+          // fill test, answers and questions
+          this.test = this.testProvider.getShuffleTest();
+          this.questions = this.test.questions;
+
+          this.answers = [
+            {description: 'Totalmente de acuerdo', code: 5},
+            {description: 'De acuerdo', code: 4},
+            {description: 'Ni de acuerdo, ni en desacuerdo (Neutral)', code: 3},
+            {description: 'En desacuerdo', code: 2},
+            {description: 'Totalmente en desacuerdo', code: 1},
+          ];
+        }
+      }
     });
+       
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TestPage');
-    this.slides.lockSwipeToNext(true);
-    this.slides.lockSwipeToPrev(true);
+    if(this.slides) {
+      this.slides.lockSwipeToNext(true);
+      this.slides.lockSwipeToPrev(true);
+    }
   }
 
   public next(index: number) {

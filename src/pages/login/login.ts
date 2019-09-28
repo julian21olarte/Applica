@@ -40,6 +40,8 @@ export class LoginPage {
         this.authOptions.push({name: 'Twitter', color: 'twitter', fn: () => this.loginTwitter()})
       }
     }
+
+    this.authOptions.push({name: 'Registrarse', color: 'primary', fn: () => this.emailLogin()})
   }
 
   public async loginFacebook() {
@@ -70,6 +72,17 @@ export class LoginPage {
       console.log(error);
       alert('Error login');
     }
+  }
+
+  public async emailLogin() {
+    // try {
+    //   const user = await this.authProvider.loginGoogle();
+    //   this.loginHandler(user);
+    // } catch(error) {
+    //   console.log(error);
+    //   alert('Error login');
+    // }
+    this.navCtrl.setRoot("RegisterPage");
   }
 
   private loginHandler(user) {

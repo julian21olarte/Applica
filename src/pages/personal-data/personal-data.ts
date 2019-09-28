@@ -41,6 +41,9 @@ export class PersonalDataPage {
 
     if (this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum && this.currentUser.age) {
       this.currentUser.status = this.currentUser.status >= 2 ? this.currentUser.status : 2;
+      if(!this.currentUser.name || this.currentUser.name == '') {
+        this.currentUser.name = this.currentUser.fullname;
+      }
       if (this.authProvider.updateUserData(this.currentUser)) {
         alert('Datos actualizados correctamente');
         this.navCtrl.setRoot('ProfilePage');
