@@ -2,7 +2,7 @@ import { TestPresentation } from './../../shared/interfaces/test.interface';
 import { DbProvider } from './../../providers/db';
 import {AuthProvider} from "../../providers/auth";
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { User } from '../../shared/interfaces/user.interface';
 
 /**
@@ -23,7 +23,7 @@ export class ProfilePage {
   public phases: Array<any>;
   public presentations: Array<TestPresentation>;
   public personality: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider, public database: DbProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider, public database: DbProvider, public menu: MenuController) {
     this.presentations = [];
     this.phases = [
       {description: "Registrate con tu red social favorita"},
@@ -33,13 +33,19 @@ export class ProfilePage {
     ];
 
 
-    this.authProvider.getCurrentUser()
+    this.authProvider.getCurrentUser().take(1)
     .subscribe(user => {
       if(user) {
         this.currentUser = user;
-        if(this.currentUser && this.currentUser.results) {
-          this.personality = this.currentUser.results[0];
-          this.loadPresentations(this.currentUser.uid);
+        if(this.currentUser) {
+          console.log(this.currentUser)
+          if(this.currentUser.status == 2) {
+            this.menu.open();
+          }
+          if(this.currentUser.results) {
+            this.personality = this.currentUser.results[0];
+            this.loadPresentations(this.currentUser.uid);
+          }
         }
       }
     });
