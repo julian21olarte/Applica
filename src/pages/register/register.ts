@@ -62,6 +62,10 @@ export class RegisterPage {
         this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
       }
       load.dismiss();
+
+      if(!this.isLogin) {
+        this.createToast('Registro exitoso!');
+      }
   }
 
   private login() {
