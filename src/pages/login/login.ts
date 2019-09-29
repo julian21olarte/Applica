@@ -34,10 +34,14 @@ export class LoginPage {
     ];
 
     if(this.platform.is('cordova')) {
-      // checking if user have twitter installed
-      let haveTwitter: boolean = await this.appAvailability.check('com.twitter.android')
-      if(haveTwitter) {
-        this.authOptions.push({name: 'Twitter', color: 'twitter', fn: () => this.loginTwitter()})
+      try {
+        // checking if user have twitter installed
+        let haveTwitter: boolean = await this.appAvailability.check('com.twitter.android')
+        if(haveTwitter) {
+          this.authOptions.push({name: 'Twitter', color: 'twitter', fn: () => this.loginTwitter()})
+        }
+      } catch(e) {
+        console.log(e)
       }
     }
 
@@ -76,10 +80,10 @@ export class LoginPage {
   }
 
   public async register() {
-    this.navCtrl.setRoot("RegisterPage");
+    this.navCtrl.push("RegisterPage");
   }
   public async emailLogin() {
-    this.navCtrl.setRoot("RegisterPage", {isLogin: true});
+    this.navCtrl.push("RegisterPage", {isLogin: true});
   }
 
   private loginHandler(user) {

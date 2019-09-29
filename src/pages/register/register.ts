@@ -1,4 +1,3 @@
-import { User } from 'src/shared/interfaces/user.interface';
 import {AuthProvider} from "../../providers/auth";
 import { AppAvailability } from '@ionic-native/app-availability';
 import { Component } from '@angular/core';
@@ -39,30 +38,30 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  public handleLogin() {
+  public async handleLogin() {
       if( !this.email || !this.password) {
         this.createToast('Datos invalidos!');
         return false;
       }
+      if(this.password.length < 8) {
+        this.createToast('Ingresa una contraseña con al menos 8 carácteres!', 4000);
+        return false;
+      }
       let load = this.loading.create({
-        content: 'Cargando...',
-        duration: 2000
+        content: 'Cargando...'
       });
       load.present();
-      load.onDidDismiss(() => {
-        if(this.isLogin) {
-          this.login()
-        } else {
-          this.authProvider.signup(this.email, this.password)
-          .then(response => {
-            return this.login();
-          })
-          .catch(err => {
-            this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
-            return false;
-          });
+
+      try {
+        if(!this.isLogin) {
+          await this.authProvider.signup(this.email, this.password)
         }
-      });
+
+        await this.login();
+      } catch(e) {
+        this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
+      }
+      load.dismiss();
   }
 
   private login() {
@@ -75,10 +74,10 @@ export class RegisterPage {
       return false;
     });
   }
-  private createToast(msg: string) {
+  private createToast(msg: string, duration: number = 3000) {
     this.toastCtrl.create({
       message: msg,
-      duration: 3000
+      duration: duration
     }).present();
   }
 
