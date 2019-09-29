@@ -21,6 +21,7 @@ export class RegisterPage {
   public password: string;
   public isLogin: boolean;
   public authOptions: Array<any>;
+  public load: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,10 +48,10 @@ export class RegisterPage {
         this.createToast('Ingresa una contraseña con al menos 8 carácteres!', 4000);
         return false;
       }
-      let load = this.loading.create({
+      this.load = this.loading.create({
         content: 'Cargando...'
       });
-      load.present();
+      this.load.present();
 
       try {
         if(!this.isLogin) {
@@ -61,22 +62,20 @@ export class RegisterPage {
       } catch(e) {
         this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
       }
-      load.dismiss();
-
-      if(!this.isLogin) {
-        this.createToast('Registro exitoso!');
-      }
   }
 
-  private login() {
-    this.authProvider.emailLogin(this.email, this.password)
-    .then(user => {
+  private async login() {
+    try {
+      let user = await this.authProvider.emailLogin(this.email, this.password)
+      this.load.dismiss();
+      if(!this.isLogin) {
+        alert('Registro exitoso!');
+      }
       this.loginHandler(user);
-    })
-    .catch(err => {
+    } catch(e) {
       this.createToast('No se pudo iniciar sesion, intentelo mas tarde');
       return false;
-    });
+    }
   }
   private createToast(msg: string, duration: number = 3000) {
     this.toastCtrl.create({
