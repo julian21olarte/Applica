@@ -37,6 +37,7 @@ export class PersonalDataPage {
   public saveData() {
     if(this.currentUser.phone.length < 7) {
       alert('El telefono debe tener al menos 7 digitos')
+      return false;
     }
 
     if (this.currentUser.fullname !== '' && this.currentUser.institute !== '' && this.currentUser.stratum && this.currentUser.age) {
