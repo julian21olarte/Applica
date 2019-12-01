@@ -5,7 +5,7 @@
     </ion-toolbar>
     <ion-item color="primary" *ngIf="currentUser">
       <ion-avatar item-center class="avatars">
-        <img src="{{currentUser.image}}">
+        <img src="{{currentUser.image}}" alt="user_img" >
       </ion-avatar>
       <h4>{{currentUser.name | titlecase}}</h4>
       <p>{{currentUser.email}}</p>

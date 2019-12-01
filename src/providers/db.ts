@@ -21,7 +21,8 @@ export class DbProvider {
   }
 
   public async countResults(results: Array<any>) {
-    const higher = results.sort((a, b) => b.match - a.match)[0];
+    results.sort((a, b) => b.match - a.match);
+    const higher = results[0];
     try {
       let snapshot = await this.database
       .collection('typologies')
