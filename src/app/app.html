@@ -20,9 +20,9 @@
       <button menuClose *ngIf="!currentUser" ion-item no-lines (click)="openPage('LoginPage')"><ion-icon name="log-in"></ion-icon> Login</button>
       <button menuClose *ngIf="currentUser && currentUser.results" ion-item no-lines (click)="openPage('TestResultPage')"><ion-icon name="stats"></ion-icon> Resultados</button>
       <button menuClose *ngIf="currentUser" ion-item no-lines (click)="logout()"><ion-icon name="log-out"></ion-icon> Salir</button>
-    </ion-list>
+    </ion-list> 
   </ion-content>
-  
+
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
