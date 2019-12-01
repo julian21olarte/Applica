@@ -7,6 +7,7 @@ import { Question } from '../shared/interfaces/question.interface';
 import 'rxjs/add/operator/map';
 import { User } from 'src/shared/interfaces/user.interface';
 import localTest from "../shared/tests/v1.json"; // TODO: change this
+const crypto = window.crypto;
 
 /*
   Generated class for the TestProvider provider.
@@ -23,7 +24,7 @@ export class TestProvider {
     }
 
     public async loadTest() {
-        let rawTest = <RawTest> { questions: [] }
+        let rawTest: { questions: { forEach: (arg0: (item: any) => void) => void; }; };
         this.test = <Test> { questions: [] }
         rawTest = localTest;
         
@@ -44,11 +45,16 @@ export class TestProvider {
         return this.test;
     }
 
+    private getRandomValue() {
+        let arr = new Uint32Array(1);
+        crypto.getRandomValues(arr);
+        return arr[0] * Math.pow(2,-32);
+    }
+
     public getShuffleTest(): Test {
         this.loadTest();
-        let sortedTest = <Test> {
-            questions: this.test.questions.sort(() => .5 - Math.random())
-        };
+        this.test.questions.sort(() => .5 - this.getRandomValue())
+        let sortedTest = <Test> { questions: this.test.questions };
         sortedTest.questions.forEach((question, index) => question.index = index+1);
         return sortedTest;
     }
@@ -65,7 +71,8 @@ export class TestProvider {
         });
 
         let valuesMap = new Map();
-        values = values.sort((a, b) => b.value - a.value)
+        values.sort((a, b) => b.value - a.value)
+        values = values
             .slice(0, 3)
             .map(value => {
                 valuesMap.set(value.category, value.value)
