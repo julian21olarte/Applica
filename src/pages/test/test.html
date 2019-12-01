@@ -7,13 +7,10 @@
 <ion-header>
 
     <ion-navbar color="primary">
-      <!-- <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button> -->
       <ion-chip class="chip-header" color="primary" *ngIf="currentUser">
         <ion-title>Test</ion-title>
         <ion-avatar menuToggle item-start class="avatar-header">
-          <img src="{{currentUser.image}}">
+          <img src="{{currentUser.image}}" alt="user_img">
         </ion-avatar>
       </ion-chip>
     </ion-navbar>
@@ -29,7 +26,7 @@
             <h5 class="question-title">{{(i+1)}}. {{question.question}}</h5>
             <br>
             <ion-avatar item-center>
-              <img class="question-img" src="https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com/o/images%2Ftests%2Fv1%2F{{question.image}}?alt=media">
+              <img class="question-img" src="https://firebasestorage.googleapis.com/v0/b/applica-4886b.appspot.com/o/images%2Ftests%2Fv1%2F{{question.image}}?alt=media" alt="question-img">
             </ion-avatar>
             <ion-list class="answers-list" radio-group [(ngModel)]="question.answer">
               <ion-item *ngFor="let answer of answers" text-wrap>
