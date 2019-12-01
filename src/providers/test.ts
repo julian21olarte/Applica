@@ -52,7 +52,7 @@ export class TestProvider {
         sortedTest.questions.forEach((question, index) => question.index = index+1);
         return sortedTest;
     }
-
+ 
     public evaluateTest(test: Array<Question>) {
         let values = [];
         test.forEach(question => {
